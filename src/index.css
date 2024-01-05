@@ -1,3 +1,71 @@
+
+/* اضافه کردن لایه های tailwind */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+/* اضافه کردن فونت به پروژه */
+
+@font-face {
+    font-family: 'vazir-bold';
+    src: url('./assets/font/Vazir.ttf') format('truetype'),
+        url('./assets/font/Vazir-Bold.woff') format('woff'),
+        url('./assets/font/Vazir-Bold.woff2') format('woff2'),
+        url('./assets/font/Vazir-Bold.eot') format('eot');
+    ;
+}
+
+@font-face {
+    font-family: 'vazir-light';
+    src: url('./assets/font/Vazir-Light.ttf') format('truetype'),
+        url('./assets/font/Vazir-Light.woff') format('woff'),
+        url('./assets/font/Vazir-Light.woff2') format('woff2'),
+        url('./assets/font/Vazir-Light.eot') format('eot');
+    ;
+}
+
+@font-face {
+    font-family: 'vazir-medium';
+    src: url('./assets/font/Vazir-Medium.ttf') format('truetype'),
+        url('./assets/font/Vazir-Medium.woff') format('woff'),
+        url('./assets/font/Vazir-Medium.woff2') format('woff2'),
+        url('./assets/font/Vazir-Medium.eot') format('eot');
+    ;
+}
+
+@font-face {
+    font-family: 'vazir-thin';
+    src: url('./assets/font/Vazir-Thin.ttf') format('truetype'),
+        url('./assets/font/Vazir-Thin.woff') format('woff'),
+        url('./assets/font/Vazir-Thin.woff2') format('woff2'),
+        url('./assets/font/Vazir-Thin.eot') format('eot');
+    ;
+}
+
+@font-face {
+    font-family: 'vazir';
+    src: url('./assets/font/Vazir.ttf') format('truetype'),
+        url('./assets/font/Vazir.woff') format('woff'),
+        url('./assets/font/Vazir.woff2') format('woff2'),
+        url('./assets/font/Vazir.eot') format('eot');
+    ;
+}
+/* شخصی سازی استایل ها */
+
+@layer base {
+    html {
+        direction: rtl;
+        box-sizing: border-box;
+        font-family: vazir;
+    }
+    .btn-auth{
+        @apply text-base bg-amber-300 border px-3 py-2 rounded-lg hover:bg-amber-400 transition;
+    }
+    .menu-item{
+        @apply text-center text-lg bg-amber-300 border hover:bg-amber-400 transition;
+    }
+}

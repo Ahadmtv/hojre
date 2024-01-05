@@ -4,7 +4,23 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      },
+      spacing: {
+        '230': '230px',
+        '400':'400px'
+      },
+      fontFamily: {
+        'vazir':"vazir",
+        'vazir-bold':'vazir-bold',
+        'vazir-light':'vazir-light',
+        'vazir-thin':'vazir-thin',
+        'vazir-medium':'vazir-medium'
+      }
+    },
   },
   plugins: [],
 }

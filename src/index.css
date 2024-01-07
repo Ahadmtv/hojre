@@ -1,4 +1,3 @@
-
 /* اضافه کردن لایه های tailwind */
 
 @tailwind base;
@@ -54,6 +53,7 @@
         url('./assets/font/Vazir.eot') format('eot');
     ;
 }
+
 /* شخصی سازی استایل ها */
 
 @layer base {
@@ -62,10 +62,21 @@
         box-sizing: border-box;
         font-family: vazir;
     }
-    .btn-auth{
+
+    .btn-auth {
         @apply text-base bg-amber-300 border px-3 py-2 rounded-lg hover:bg-amber-400 transition;
     }
-    .menu-item{
+
+    .menu-item {
         @apply text-center text-lg bg-amber-300 border hover:bg-amber-400 transition;
+    }
+
+    #background {
+        background-image: url(/src/assets/images/bg-img/06.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
     }
 }

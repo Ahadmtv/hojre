@@ -14,8 +14,8 @@ const Navbar: FC = () => {
     }
     return (
         <>
-            <header>
-                <div className="container mx-auto bg-white overflow-hidden">
+            <header className="absolute top-0 w-full">
+                <div className="container mx-auto bg-transparent overflow-hidden">
                     <div className="flex justify-between px-8 md:hidden">
                         {/* کلاس شخصی سازی شده  */}
                         <div className={` my-5 ${authToggle ? "block" : "hidden"}`}><Link className="btn-auth" to="">ورود</Link></div>

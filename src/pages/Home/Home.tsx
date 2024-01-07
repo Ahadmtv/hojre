@@ -1,8 +1,12 @@
 import { FC } from "react"
+import Banner from "../../components/Banner"
 
-const Home:FC = () => {
+const Home: FC = () => {
   return (
-    <div>Home</div>
+    <div>
+      <Banner />
+
+    </div>
   )
 }
 

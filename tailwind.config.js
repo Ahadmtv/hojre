@@ -11,7 +11,9 @@ module.exports = {
       },
       spacing: {
         '230': '230px',
-        '400':'400px'
+        '400':'400px',
+        '770':'770px',
+        '170':'170px'
       },
       fontFamily: {
         'vazir':"vazir",

@@ -6,7 +6,7 @@ import { FC } from 'react';
 
 const App:FC=()=>{
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden">
       <BrowserRouter>
         <Navbar />
 

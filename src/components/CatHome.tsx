@@ -1,6 +1,7 @@
+import { FC } from "react"
 import { Link } from "react-router-dom"
 
-const CatHome = () => {
+const CatHome:FC = () => {
     const categoryList = [
         {
             imgUrl: './assets/images/category/01.jpg',
@@ -41,9 +42,9 @@ const CatHome = () => {
                     <h2 className="text-md mb-5">هر چیزی که دنبالشی رو اینجا میتونی پیدا کنی</h2>
                 </div>
                 <div className="cat-sec grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {categoryList.map((cat) => {
+                    {categoryList.map((cat,i) => {
                         return (
-                            <div className="relative hover:-translate-y-1 transition duration-300 ease-in-out">
+                            <div key={i} className="relative hover:-translate-y-1 transition duration-300 ease-in-out">
                                 <div className="relative">
                                     <img src={cat.imgUrl} alt={`${cat.title}`} className="block w-full h-auto" />
 
@@ -70,4 +71,3 @@ const CatHome = () => {
 
 export default CatHome
 
-// transition-all text-2xl bg-transparent hover:bg-amber-300 duration-300 ease-linear px-8 py-2 rounded-lg border-amber-300 border

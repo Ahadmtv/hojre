@@ -1,5 +1,4 @@
 import { FC, useState } from "react"
-import logo from "../assets/images/logo/logo.png"
 import { Link } from 'react-router-dom'
 
 
@@ -39,7 +38,7 @@ const Navbar: FC = () => {
                         </ul>
                     </div>
                         <div className="mr-auto">
-                            <Link to="/"><img src={logo}></img></Link>
+                            <Link to="/"><img src="./assets/images/logo/logo.png"></img></Link>
                         </div>
                     </div>
                     <div className={` w-full ${menuToggle ? "h-230" : "h-0"} transition-[height] lg:hidden`}>

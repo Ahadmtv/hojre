@@ -21,7 +21,10 @@ module.exports = {
         'vazir-light':'vazir-light',
         'vazir-thin':'vazir-thin',
         'vazir-medium':'vazir-medium'
-      }
+      },
+      backgroundImage: {
+        'hover-gradient': 'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(31, 41, 55, 0.6))',
+      },
     },
   },
   plugins: [],

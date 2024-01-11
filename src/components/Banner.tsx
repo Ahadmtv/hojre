@@ -44,7 +44,7 @@ const Banner: FC = () => {
                     <form className="relative">
                         {<SelectCat />}
                         <div className="relative">
-                            <input className="rounded-lg border h-14 w-full lg:pr-170 px-4" type="search" value={searchValue} placeholder="نام محصول را جستجو کنید" onChange={(e) => handleChange(e)}></input>
+                            <input className="rounded-lg shadow-md h-14 w-full lg:pr-170 px-4" type="search" value={searchValue} placeholder="نام محصول را جستجو کنید" onChange={(e) => handleChange(e)}></input>
                             <button className="absolute left-4 top-1/2 -translate-y-1/2 " onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i></button>
                             {filterd[0] && <div className="max-h-400 overflow-scroll absolute bg-white w-full overflow-x-hidden">
                                 <ul>

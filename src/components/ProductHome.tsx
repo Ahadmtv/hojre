@@ -95,10 +95,10 @@ const ProductHome: FC = () => {
         }
     }
     return (
-        <div className="background-product relative pt-16">
+        <div className="background-product relative pt-16 pb-16">
             <div><img className=" z-0 absolute top-1/2 left-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/01.png"></img></div>
             <div><img className=" z-0 absolute top-1/2 right-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/02.png"></img></div>
-            <div className="container mx-auto z-10">
+            <div className="container mx-auto z-10 px-4 md:px-0">
                 <div className="bg-white flex items-center py-6 px-5 shadow-lg rounded">
                     <div><h1 className="text-2xl font-vazir-bold font-bold">محصولات ما</h1></div>
                     <div className="mr-auto">

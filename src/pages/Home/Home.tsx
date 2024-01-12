@@ -2,6 +2,7 @@ import { FC } from "react"
 import Banner from "../../components/Banner"
 import CatHome from "../../components/CatHome"
 import ProductHome from "../../components/ProductHome"
+import RegisterHome from "../../components/RegisterHome"
 
 const Home: FC = () => {
   return (
@@ -9,6 +10,7 @@ const Home: FC = () => {
       <Banner />
       <CatHome/>
       <ProductHome/>
+      <RegisterHome/>
     </div>
   )
 }

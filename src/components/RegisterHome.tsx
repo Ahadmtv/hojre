@@ -16,7 +16,7 @@ const RegisterHome: FC = () => {
                             <button className="mb-32 btn-auth" type="submit">ثبت نام</button>
                         </form>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center my-7 lg:my-0 lg:pr-5">
                         <div className="text-white">
                             <span className="text-amber-300 font-vazir-light text-lg my-1">روز هاتو مدیریت کن</span>
                             <p className="text-2xl my-1">

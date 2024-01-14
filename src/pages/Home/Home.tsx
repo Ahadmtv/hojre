@@ -6,6 +6,7 @@ import RegisterHome from "../../components/home-sec/RegisterHome"
 import MapHome from "../../components/home-sec/MapHome"
 import AboutHome from "../../components/home-sec/AboutHome"
 import AplicationHome from "../../components/home-sec/AplicationHome"
+import BrandHome from "../../components/home-sec/BrandHome"
 
 const Home: FC = () => {
   return (
@@ -17,6 +18,7 @@ const Home: FC = () => {
       <MapHome/>
       <AboutHome/>
       <AplicationHome/>
+      <BrandHome/>
     </div>
   )
 }

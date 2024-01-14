@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const AplicationHome: FC = () => {
     return (
-        <div>
+        <div className="pb-20">
             <div className="container mx-auto flex justify-center items-center">
                 <div className="w-[80%] lg:w-[50%] flex flex-col justify-center items-center gap-10 ">
                     <div>

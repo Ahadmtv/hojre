@@ -1,10 +1,11 @@
 import { FC } from "react"
-import Banner from "../../components/Banner"
-import CatHome from "../../components/CatHome"
-import ProductHome from "../../components/ProductHome"
-import RegisterHome from "../../components/RegisterHome"
-import MapHome from "../../components/MapHome"
-import AboutHome from "../../components/AboutHome"
+import Banner from "../../components/home-sec/Banner"
+import CatHome from "../../components/home-sec/CatHome"
+import ProductHome from "../../components/home-sec/ProductHome"
+import RegisterHome from "../../components/home-sec/RegisterHome"
+import MapHome from "../../components/home-sec/MapHome"
+import AboutHome from "../../components/home-sec/AboutHome"
+import AplicationHome from "../../components/home-sec/AplicationHome"
 
 const Home: FC = () => {
   return (
@@ -15,6 +16,7 @@ const Home: FC = () => {
       <RegisterHome/>
       <MapHome/>
       <AboutHome/>
+      <AplicationHome/>
     </div>
   )
 }

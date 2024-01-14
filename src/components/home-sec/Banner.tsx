@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react"
-import productData from "../products.json"
-import SelectCat from "./SelectCat";
+import productData from "../../products.json"
+import SelectCat from "../SelectCat";
 import { Link } from "react-router-dom";
 
 interface Iproduct {

@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import Ratting from "./Ratting"
+import Ratting from "../Ratting"
 import { Link } from "react-router-dom"
 interface Iproducts {
     imgUrl: string

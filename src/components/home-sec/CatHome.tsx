@@ -62,7 +62,7 @@ const CatHome:FC = () => {
 
                 </div>
                 <div className="my-10">
-                    <Link className="inline-block hover:-translate-y-1 text-2xl bg-transparent hover:bg-amber-300 duration-300 ease-linear px-8 py-2 rounded-lg border-amber-300 border" to="/shop">خرید</Link>
+                    <Link className="inline-block hover:-translate-y-1 text-2xl bg-transparent hover:bg-amber-300 duration-200 ease-linear px-8 py-2 rounded-lg border-amber-300 border" to="/shop">خرید</Link>
                 </div>
             </div>
         </div>

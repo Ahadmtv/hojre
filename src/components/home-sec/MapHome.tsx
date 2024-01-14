@@ -1,5 +1,5 @@
 import { FC } from "react"
-import Tooltip from "./Tooltip"
+import Tooltip from "../Tooltip"
 
 const MapHome: FC = () => {
     return (

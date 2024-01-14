@@ -5,6 +5,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        ping: {
+          '0%': { transform: 'scale(0)', opacity: 1, transformOrigin: 'center' },
+          '100%': { transform: 'scale(2)', opacity: 0, transformOrigin: 'center' }
+        }
+      },
+      animation: {
+        ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite'
+      },
       transitionProperty: {
         'height': 'height',
         'spacing': 'margin, padding',

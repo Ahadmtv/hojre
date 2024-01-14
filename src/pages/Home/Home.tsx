@@ -4,6 +4,7 @@ import CatHome from "../../components/CatHome"
 import ProductHome from "../../components/ProductHome"
 import RegisterHome from "../../components/RegisterHome"
 import MapHome from "../../components/MapHome"
+import AboutHome from "../../components/AboutHome"
 
 const Home: FC = () => {
   return (
@@ -13,6 +14,7 @@ const Home: FC = () => {
       <ProductHome/>
       <RegisterHome/>
       <MapHome/>
+      <AboutHome/>
     </div>
   )
 }

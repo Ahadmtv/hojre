@@ -201,4 +201,8 @@
     .shap-animation{
         animation: outer-ripple 15s infinite;
     }
+
+    /* مشخص کردن کلاس برای شبکه های اجتماعی */
+    .instagram{background-color: #e4405f;}.facebook{background-color: #3b5998;}.linkedin{background-color: #007bb5;}.pinterest{background-color:#bd081c;}.twitter{background-color: #55acee;}
+
 }

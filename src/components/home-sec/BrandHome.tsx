@@ -27,7 +27,7 @@ const BrandHome: FC = () => {
         },
     ];
     return (
-        <div className="py-10 bg-pink-200">
+        <div className="py-10 bg-gray-100">
             <div className="container mx-auto">
                 <Swiper
                     slidesPerView={2}

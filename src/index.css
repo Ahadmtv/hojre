@@ -201,6 +201,13 @@
     .shap-animation{
         animation: outer-ripple 15s infinite;
     }
+    .header-secondry{
+        background-image: url(../public/assets/images/pageheader/bg/01.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 60vh;
+    }
 
     /* مشخص کردن کلاس برای شبکه های اجتماعی */
     .instagram{background-color: #e4405f;}.facebook{background-color: #3b5998;}.linkedin{background-color: #007bb5;}.pinterest{background-color:#bd081c;}.twitter{background-color: #55acee;}

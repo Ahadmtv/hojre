@@ -12,10 +12,10 @@ const App:FC=()=>{
         <Navbar />
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path='/shop' element={<Shop/>}/>
-          <Route path='/blog' element={<Blog/>}/>
+          <Route path='/درباره ما' element={<About/>}/>
+          <Route path='/ارتباط با ما' element={<Contact/>}/>
+          <Route path='/فروشگاه' element={<Shop/>}/>
+          <Route path='/مطالب' element={<Blog/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

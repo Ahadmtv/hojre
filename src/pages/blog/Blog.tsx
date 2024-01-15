@@ -1,7 +1,10 @@
+import HeaderSecondry from "../../components/HeaderSecondry"
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <div>
+      <HeaderSecondry/>
+    </div>
   )
 }
 

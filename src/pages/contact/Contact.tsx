@@ -1,7 +1,10 @@
+import HeaderSecondry from "../../components/HeaderSecondry"
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <div>
+      <HeaderSecondry/>
+    </div>
   )
 }
 

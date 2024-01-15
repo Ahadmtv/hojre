@@ -1,7 +1,10 @@
+import HeaderSecondry from "../../components/HeaderSecondry"
 
 const Shop = () => {
   return (
-    <div>Shop</div>
+    <div>
+      <HeaderSecondry/>
+    </div>
   )
 }
 

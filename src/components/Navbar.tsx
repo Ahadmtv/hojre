@@ -31,10 +31,10 @@ const Navbar: FC = () => {
                         <div className="mr-5 lg:flex justify-center items-center hidden ">
                         <ul className="flex justify-between items-center min-w-400">
                             <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/">خانه</Link></li>
-                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/shop">فروشگاه</Link></li>
-                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/blog">مطالب</Link></li>
-                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/about">درباره ما</Link></li>
-                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="contact">تماس با ما</Link></li>
+                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/فروشگاه">فروشگاه</Link></li>
+                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/مطالب">مطالب</Link></li>
+                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="/درباره ما">درباره ما</Link></li>
+                            <li className="text-center text-base "><Link className="p-2 hover:bg-gray-200 block rounded" to="ارتباط با ما">تماس با ما</Link></li>
                         </ul>
                     </div>
                         <div className="mr-auto">
@@ -45,10 +45,10 @@ const Navbar: FC = () => {
                         <ul>
                             {/* کلاس شخصی سازی شده  */}
                             <li className="menu-item "><Link className="block p-2 h-full" to="/">خانه</Link></li>
-                            <li className="menu-item "><Link className="block p-2 h-full" to="/shop">فروشگاه</Link></li>
-                            <li className="menu-item "><Link className="block p-2 h-full" to="/blog">مطالب</Link></li>
-                            <li className="menu-item "><Link className="block p-2 h-full" to="/about">درباره ما</Link></li>
-                            <li className="menu-item "><Link className="block p-2 h-full" to="contact">تماس با ما</Link></li>
+                            <li className="menu-item "><Link className="block p-2 h-full" to="/فروشگاه">فروشگاه</Link></li>
+                            <li className="menu-item "><Link className="block p-2 h-full" to="/مطالب">مطالب</Link></li>
+                            <li className="menu-item "><Link className="block p-2 h-full" to="/درباره ما">درباره ما</Link></li>
+                            <li className="menu-item "><Link className="block p-2 h-full" to="ارتباط با ما">تماس با ما</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -178,30 +178,35 @@
         height: 100vh;
         width: 100vw;
     }
-    .background-product{
+
+    .background-product {
         background-image: url(../public/assets/images/shape-img/01.jpg);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         width: 100vw;
     }
-    .background-register-home{
+
+    .background-register-home {
         background-image: url(../public/assets/images/bg-img/07.jpg);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         width: 100vw;
     }
-    .background-person-map{
+
+    .background-person-map {
         background-image: url(../public/assets/images/clients/avater.jpg);
-        background-size:cover;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
-    .shap-animation{
+
+    .shap-animation {
         animation: outer-ripple 15s infinite;
     }
-    .header-secondry{
+
+    .header-secondry {
         background-image: url(../public/assets/images/pageheader/bg/01.jpg);
         background-size: cover;
         background-position: center;
@@ -209,7 +214,37 @@
         height: 60vh;
     }
 
+    .my-shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-slide-active {
+        @apply absolute w-full h-full backdrop-blur-md top-0 right-0 flex justify-center items-center duration-200 ease-linear  origin-center opacity-100;
+    }
+
+    .product-slide {
+        @apply absolute  w-full h-full backdrop-blur-md top-0 right-0 flex justify-center items-center duration-200 ease-linear origin-center opacity-0;
+    }
+
     /* مشخص کردن کلاس برای شبکه های اجتماعی */
-    .instagram{background-color: #e4405f;}.facebook{background-color: #3b5998;}.linkedin{background-color: #007bb5;}.pinterest{background-color:#bd081c;}.twitter{background-color: #55acee;}
+    .instagram {
+        background-color: #e4405f;
+    }
+
+    .facebook {
+        background-color: #3b5998;
+    }
+
+    .linkedin {
+        background-color: #007bb5;
+    }
+
+    .pinterest {
+        background-color: #bd081c;
+    }
+
+    .twitter {
+        background-color: #55acee;
+    }
 
 }

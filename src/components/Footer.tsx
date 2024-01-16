@@ -135,7 +135,7 @@ const Footer: FC = () => {
                             <div className='flex flex-col gap-1'>
                                 {addressList.map((item, i) => {
                                     return (
-                                        <div className='flex'>
+                                        <div key={i} className='flex'>
                                             <div className='w-[20px] flex justify-center items-center'><i className={`${item.iconName}`}></i></div>
                                             <div className='mr-1 font-vazir-thin'>{item.text}</div>
                                         </div>

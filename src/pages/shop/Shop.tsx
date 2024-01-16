@@ -3,26 +3,38 @@ import HeaderSecondry from "../../components/HeaderSecondry"
 import ProductCards from "../../components/shop-sec/ProductCards"
 import data from "../../products.json"
 import Pagination from "../../components/shop-sec/Pagination"
+import SearchShop from "../../components/shop-sec/SearchShop"
+import CategoryAll, { Iproduct } from "../../components/shop-sec/CategoryAll"
 
 const Shop = () => {
-  const [currentPage,setCurrentPage]=useState<number>(1);
-  const productPerPage:number=12;
-  const pageNum=Math.ceil((data.length)/productPerPage);
-  console.log(pageNum);
-  console.log(data.length);
-  const lastIndex=productPerPage * currentPage;
-  const firstIndex=lastIndex - productPerPage;
-  const product= data.slice(firstIndex,lastIndex);
+  const [filterdPro, setFilterdPro] = useState<Iproduct[]>([...data]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const changeCate = (val: string) => {
+    if(val==="همه"){
+      setFilterdPro(data)
+    }else{
+      setFilterdPro(data.filter((d) => d.category.includes(val)));
+    }
+    setCurrentPage(1);
+  }
+  const productPerPage: number =12;
+  const pageNum = Math.ceil((filterdPro.length) / productPerPage);
+  const lastIndex = productPerPage * currentPage;
+  const firstIndex = lastIndex - productPerPage;
+  const ahad = filterdPro.slice(firstIndex, lastIndex);
   return (
     <div>
-      <HeaderSecondry/>
+      <HeaderSecondry />
       <div>
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row mt-16">
-            <div className="w-full lg:w-[65%]"><ProductCards data={product}/></div>
-            <div className="w-full lg:w-[35%]"></div>
+          <div className="flex flex-col lg:flex-row my-16 gap-x-6">
+            <div className="w-full lg:w-[65%]"><ProductCards data={ahad} /></div>
+            <div className="w-full lg:w-[35%]">
+              <SearchShop data={data} />
+              <CategoryAll changeCate={changeCate} data={data} />
+            </div>
           </div>
-          <Pagination  pageNum={pageNum} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+          {!(filterdPro.length<=productPerPage)&&<Pagination pageNum={pageNum} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         </div>
       </div>
     </div>

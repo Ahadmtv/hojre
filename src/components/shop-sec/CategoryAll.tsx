@@ -20,7 +20,7 @@ const CategoryAll: FC<Iprops> = ({ data, changeCate }) => {
     const [status, setStatus] = useState<string>("همه")
     const categoryList = ["همه", ...new Set(data.map((d) => d.category))];
     return (
-        <div className="my-4">
+        <div className="my-4 p-4 my-shadow">
             <div className="flex flex-wrap gap-3">
                 {categoryList.map((cate, i) => {
                     return (
@@ -40,6 +40,3 @@ const CategoryAll: FC<Iprops> = ({ data, changeCate }) => {
 }
 
 export default CategoryAll
-// const ahad:Set<string>=new Set(["ahad","amir","ali","ahad"]);
-// let amirrrr=[...ahad];
-// console.log(amirrrr);

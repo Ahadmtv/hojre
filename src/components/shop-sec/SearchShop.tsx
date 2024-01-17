@@ -35,7 +35,7 @@ const SearchShop: FC<Iprops> = ({ data }) => {
     return (
         <div className="p-4 my-shadow">
             <div className="relative">
-                <input className="bg-gray-200 h-14 w-full lg:pr-170 px-4" type="search" value={searchValue} placeholder="نام محصول را جستجو کنید" onChange={(e) => handleChange(e)}></input>
+                <input className="bg-gray-200 h-14 w-full px-4" type="search" value={searchValue} placeholder="نام محصول را جستجو کنید" onChange={(e) => handleChange(e)}></input>
                 <button className="absolute left-4 top-1/2 -translate-y-1/2 " onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i></button>
                 {filterd[0] && <div className="max-h-400 overflow-scroll absolute bg-white w-full overflow-x-hidden">
                     <ul>

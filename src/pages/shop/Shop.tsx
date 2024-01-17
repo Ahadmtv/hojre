@@ -5,6 +5,7 @@ import data from "../../products.json"
 import Pagination from "../../components/shop-sec/Pagination"
 import SearchShop from "../../components/shop-sec/SearchShop"
 import CategoryAll, { Iproduct } from "../../components/shop-sec/CategoryAll"
+import PopularPosts from "../../components/shop-sec/PopularPosts"
 
 const Shop = () => {
   const [filterdPro, setFilterdPro] = useState<Iproduct[]>([...data]);
@@ -27,13 +28,15 @@ const Shop = () => {
       <HeaderSecondry />
       <div>
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row my-16 gap-x-6">
+          <div className="flex flex-col-reverse lg:flex-row my-16 gap-x-6">
             <div className="w-full lg:w-[65%]"><ProductCards data={ahad} /></div>
             <div className="w-full lg:w-[35%]">
               <SearchShop data={data} />
               <CategoryAll changeCate={changeCate} data={data} />
+              <div className="hidden lg:block"><PopularPosts/></div>
             </div>
           </div>
+          <div className="block lg:hidden"><PopularPosts/></div>
           {!(filterdPro.length<=productPerPage)&&<Pagination pageNum={pageNum} setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         </div>
       </div>

@@ -35,7 +35,7 @@ const PopularPosts: FC = () => {
     ]
 
     return (
-        <div className="my-shadow">
+        <div className="my-shadow md:w-1/2 lg:w-auto">
             <h3 className="px-3 text-xl py-3">مطالب پربازدید</h3>
             <div className="flex flex-wrap ">
                 {postList.map((post) => {

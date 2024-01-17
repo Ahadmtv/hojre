@@ -4,6 +4,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import {Home,Shop,Blog,About,Contact} from "./pages/index"
 import { FC } from 'react';
 import Footer from './components/Footer';
+import SingleProduct from './components/shop-sec/SingleProduct';
 
 const App:FC=()=>{
   return (
@@ -16,6 +17,7 @@ const App:FC=()=>{
           <Route path='/ارتباط با ما' element={<Contact/>}/>
           <Route path='/فروشگاه' element={<Shop/>}/>
           <Route path='/مطالب' element={<Blog/>}/>
+          <Route path='/فروشگاه/:id' element={<SingleProduct/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

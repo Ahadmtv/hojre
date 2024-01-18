@@ -38,7 +38,7 @@ const Navbar: FC = () => {
                         </ul>
                     </div>
                         <div className="mr-auto">
-                            <Link to="/"><img src="./assets/images/logo/logo.png"></img></Link>
+                            <Link to="/"><img src={`${window.location.origin}/assets/images/logo/logo.png`}></img></Link>
                         </div>
                     </div>
                     <div className={` w-full ${menuToggle ? "h-230" : "h-0"} transition-[height] lg:hidden`}>

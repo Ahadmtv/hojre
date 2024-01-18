@@ -34,12 +34,14 @@ const Shop = () => {
             <div className="w-full lg:w-[35%]">
               <SearchShop data={data} />
               <CategoryAll changeCate={changeCate} data={data} />
-              <div className="hidden lg:flex flex-col gap-5"><PopularPosts/>
+              <div className="hidden lg:flex flex-col gap-5">
+                <PopularPosts/>
               <PopularTags/>
               </div>
             </div>
           </div>
-          <div className="flex lg:hidden flex-col md:flex-row gap-5"><PopularPosts/>
+          <div className="flex lg:hidden flex-col md:flex-row gap-5">
+            <PopularPosts/>
           <PopularTags/>
           </div>
           {!(filterdPro.length<=productPerPage)&&<Pagination pageNum={pageNum} setCurrentPage={setCurrentPage} currentPage={currentPage} />}

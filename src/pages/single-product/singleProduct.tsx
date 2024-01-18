@@ -11,22 +11,25 @@ import ProductDetails from "../../components/single-sec/ProductDetails"
 const SingleProduct: FC = () => {
     const { id } = useParams<(string)>();
     const [product, setProduct] = useState<Iproduct[]>([]);
+    // انتخاب محصول با استفاده از آیدی آن
     useEffect(()=>{setProduct(data.filter((product) => product.id === id))},[id]);
-    
     return (
         <div>
             <HeaderSecondry />
             <div>
                 <div className="container mx-auto">
                     <div className="flex flex-col-reverse lg:flex-row my-16 gap-x-6">
+                        {/* ارسال محصول به کامپوننت  */}
                         <div className="w-full lg:w-[65%]"><ProductDetails product={product} /></div>
                         <div className="w-full lg:w-[35%]">
-                            <div className="hidden lg:flex flex-col gap-5"><PopularPosts />
+                            <div className="hidden lg:flex flex-col gap-5">
+                                <PopularPosts />
                                 <PopularTags />
                             </div>
                         </div>
                     </div>
-                    <div className="flex lg:hidden flex-col md:flex-row gap-5"><PopularPosts />
+                    <div className="flex lg:hidden flex-col md:flex-row gap-5">
+                        <PopularPosts />
                         <PopularTags />
                     </div>
                 </div>

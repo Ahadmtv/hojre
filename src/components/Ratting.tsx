@@ -2,7 +2,7 @@ import { FC } from "react"
 
 const Ratting:FC = () => {
   return (
-    <span>
+    <span className="text-amber-300">
         <i className="fa-solid fa-star"></i>
         <i className="fa-solid fa-star"></i>
         <i className="fa-solid fa-star"></i>

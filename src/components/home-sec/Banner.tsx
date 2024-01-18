@@ -33,7 +33,6 @@ const Banner: FC = () => {
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
 
     }
-    console.log(filterd);
     return (
         <div id="background" className="w-full h-screen flex justify-center items-center">
             <div className="wrapper flex flex-col justify-center items-center w-3/4 sm:w-1/2">

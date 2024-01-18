@@ -4,7 +4,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import {Home,Shop,Blog,About,Contact} from "./pages/index"
 import { FC } from 'react';
 import Footer from './components/Footer';
-import SingleProduct from './components/shop-sec/SingleProduct';
+import SingleProduct from './pages/single-product/singleProduct';
 
 const App:FC=()=>{
   return (

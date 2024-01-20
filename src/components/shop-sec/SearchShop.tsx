@@ -1,29 +1,17 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react"
 import { Link } from "react-router-dom";
-interface Iproduct {
-    "id": string;
-    "category": string;
-    "name": string;
-    "seller": string;
-    "price": number;
-    "stock": number;
-    "ratings": number;
-    "ratingsCount": number;
-    "img": string;
-    "shipping": number;
-    "quantity": number;
-}
-interface Iprops {
-    data: Iproduct[]
-}
-const SearchShop: FC<Iprops> = ({ data }) => {
+import { useGetProductsQuery } from "../../Redux/hojre";
+import { Iproduct } from "./CategoryAll";
+
+const SearchShop: FC = () => {
+    const {data,isLoading,error}=useGetProductsQuery("products");
     const [searchValue, setSearchValue] = useState<string>("");
     const [filterd, setFilterd] = useState<Iproduct[]>([]);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const searchTerm = e.target.value;
         setSearchValue(searchTerm);
         if (e.target.value) {
-            setFilterd(data.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase())));
+            setFilterd(data.filter((product:any) => product.name.toLowerCase().includes(searchTerm.toLowerCase())));
         } else {
             setFilterd([])
         }

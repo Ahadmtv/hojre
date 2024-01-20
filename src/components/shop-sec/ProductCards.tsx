@@ -1,8 +1,12 @@
-import { FC, MouseEvent, useState } from "react"
+import { FC, MouseEvent, useEffect, useState } from "react"
 import Ratting from "../Ratting"
 import persian from "persianjs"
 import { Link } from "react-router-dom"
 import Tooltip from "../Tooltip"
+import { Iproduct } from "./CategoryAll"
+import { useGetProductsQuery } from "../../Redux/hojre"
+import { useDispatch, useSelector } from "react-redux"
+import { setFilterdPro } from "../../Redux/ProductsSlice"
 interface Idata {
     id: string
     category: string
@@ -16,12 +20,21 @@ interface Idata {
     shipping: number
     quantity: number
 }
-interface Iprops {
-    data: Idata[]
-}
-const ProductCards: FC<Iprops> = ({ data }) => {
-    const [styleGrid, setStyleGrid] = useState<boolean>(true);
 
+
+const ProductCards: FC = () => {
+    const { filterdPro, currentPage, productPerPage } = useSelector((state: any) => state.products);
+    const lastIndex = productPerPage * currentPage;
+    const firstIndex = lastIndex - productPerPage;
+    const Dispatch = useDispatch();
+    const { data, isLoading, error } = useGetProductsQuery("");
+    useEffect(() => {
+        if (data) {
+            Dispatch(setFilterdPro(data));
+        }
+    }, [data])
+    const [styleGrid, setStyleGrid] = useState<boolean>(true);
+    const ahad = filterdPro.slice(firstIndex, lastIndex);
     // فانکشن های مربوط با اسلاید روی عکس محصولات
 
     const hover = (e: MouseEvent<HTMLDivElement>) => {
@@ -42,7 +55,7 @@ const ProductCards: FC<Iprops> = ({ data }) => {
                 </div>
             </div>
             <div className={styleGrid ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" : "grid grid-cols-1 gap-5"}>
-                {data.map((pro) => {
+                {ahad && ahad.map((pro: any) => {
                     return (
                         <div className="my-shadow p-2" key={pro.id}>
                             <div className={styleGrid ? "" : "flex"}>

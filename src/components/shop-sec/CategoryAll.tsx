@@ -1,4 +1,7 @@
-import { Dispatch, FC, SetStateAction, useState } from "react"
+import { FC, useState } from "react"
+import { useGetProductsQuery } from "../../Redux/hojre";
+import { useDispatch } from "react-redux";
+import { setCurrentPage, setFilterdPro } from "../../Redux/ProductsSlice";
 export interface Iproduct {
     "id": string;
     "category": string;
@@ -12,24 +15,33 @@ export interface Iproduct {
     "shipping": number;
     "quantity": number;
 }
-interface Iprops {
-    data: Iproduct[]
-    changeCate: Function
-}
-const CategoryAll: FC<Iprops> = ({ data, changeCate }) => {
-    const [status, setStatus] = useState<string>("همه")
-    const categoryList = ["همه", ...new Set(data.map((d) => d.category))];
+const CategoryAll: FC = () => {
+    const [status, setStatus] = useState<string>("همه");
+    const { data, isLoading, error } = useGetProductsQuery("products");
+    const categoryList = ["همه", ...new Set(data?.map((d: any) => d.category))];
+    const Dispatch = useDispatch();
+    const changeCate = (val: string) => {
+        if (data) {
+            if (val === "همه") {
+                Dispatch(setFilterdPro(data))
+            } else {
+                Dispatch(setFilterdPro(data.filter((d: Iproduct) => d.category.includes(val))));
+            }
+            Dispatch(setCurrentPage(1));
+        }
+
+    }
     return (
         <div className="my-4 p-4 my-shadow">
             <div className="flex flex-wrap gap-3">
-                {categoryList.map((cate, i) => {
+                {categoryList.map((cate: any, i) => {
                     return (
-                        <div key={i} className={`p-4 cursor-pointer whitespace-nowrap hover:bg-amber-500 duration-200 ease-linear ${status===cate?"bg-amber-300":"bg-gray-200"}`}
-                            onClick={() => { 
+                        <div key={i} className={`p-4 cursor-pointer whitespace-nowrap hover:bg-amber-500 duration-200 ease-linear ${status === cate ? "bg-amber-300" : "bg-gray-200"}`}
+                            onClick={() => {
                                 changeCate(cate);
                                 setStatus(cate);
-                                 }}
-                                 >
+                            }}
+                        >
                             {cate}
                         </div>
                     )

@@ -4,12 +4,15 @@ import HeaderSecondry from "../../components/HeaderSecondry"
 import PopularTags from "../../components/shop-sec/PopularTags"
 import ProductDetails from "../../components/single-sec/ProductDetails"
 import ReviewDescProduct from "./ReviewDescProduct"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 
 
 
 const SingleProduct: FC = () => {
     return (
         <div>
+            <Navbar />
             <HeaderSecondry />
             <div>
                 <div className="container mx-auto">
@@ -31,6 +34,8 @@ const SingleProduct: FC = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
+
         </div>
     )
 }

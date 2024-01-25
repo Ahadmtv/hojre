@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import HeaderSecondry from "../../components/HeaderSecondry"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 
 const Blog = () => {
   const blogList = [
@@ -177,6 +179,7 @@ const Blog = () => {
   ]
   return (
     <div>
+      <Navbar />
       <HeaderSecondry />
       <div className="py-10 bg-orange-50">
         <div className="container mx-auto px-2 md:px-0">
@@ -202,6 +205,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

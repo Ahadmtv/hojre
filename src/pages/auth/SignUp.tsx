@@ -1,0 +1,91 @@
+import { FormEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../Redux/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+
+const SignUp = () => {
+  const socialList = [
+    {
+      iconName: 'fa-brands fa-facebook-f',
+      siteLink: '#',
+      className: 'facebook',
+    },
+    {
+      iconName: 'fa-brands fa-twitter',
+      siteLink: '#',
+      className: 'twitter',
+    },
+    {
+      iconName: 'fa-brands fa-linkedin-in',
+      siteLink: '#',
+      className: 'linkedin',
+    },
+    {
+      iconName: 'fa-brands fa-instagram',
+      siteLink: '#',
+      className: 'instagram',
+    },
+    {
+      iconName: 'fa-brands fa-pinterest-p',
+      siteLink: '#',
+      className: 'pinterest',
+    },
+  ]
+  const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      try {
+        const result = await dispatch(signUp({ email, password }));
+        navigate("/");
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      alert("رمز عبور با تایید رمز عبور مطابقت ندارد")
+    }
+  }
+  return (
+    <div className="bg-orange-50">
+      <div className="container mx-auto h-[100vh] flex justify-center items-center">
+        <div className=" py-10 px-[120px] my-shadow min-w-[550px] bg-white">
+          <div>
+            <div><h1 className="text-center font-vazir-bold text-3xl font-bold">ثبت نام</h1></div>
+            <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-y-2 mt-6">
+              <input className="border-2 py-2 px-2 rounded-md" type="text" placeholder="نام و نام خانوادگی" name="fullName" onChange={(e) => setFullname(e.target.value)} required />
+              <input className="border-2 py-2 px-2 rounded-md" type="text" placeholder="ایمیل" name="email" onChange={(e) => setEmail(e.target.value)} required />
+              <input className="border-2 py-2 px-2 rounded-md" type="password" placeholder="رمز عبور" name="password" onChange={(e) => setPassword(e.target.value)} required />
+              <input className="border-2 py-2 px-2 rounded-md" type="password" placeholder="تایید رمز عبور" name="confirmPass" onChange={(e) => setConfirmPassword(e.target.value)} required />
+              <button className="inline-block w-full bg-orange-600 text-white p-2 text-center rounded mt-5" type="submit">ثبت نام</button>
+            </form>
+            <div>
+              <div className="flex flex-col justify-center items-center gap-y-4 mt-8">
+                <Link className="font-vazir-thin text-gray-800" to="/signin">قبلا ثبت نام کرده اید؟ وارد شوید</Link>
+                <div className="relative w-[30px] h-[30px]">
+                  <div className="bg-orange-600 rounded-full absolute top-0 right-0 text-white w-[30px] h-[30px] z-10 flex justify-center items-center">یا</div>
+                  <div className="bg-orange-600 rounded-full absolute top-0 right-0 w-[30px] h-[30px] animate-ping"></div>
+                </div>
+                <h3>با شبکه های اجتماعی وارد شوید</h3>
+                <div className='flex gap-1'>
+                  {socialList.map((item, i) => {
+                    return (
+                      <Link to={item.siteLink} key={i} className={`${item.className} w-[35px] h-[35px] flex justify-center items-center rounded-full hover:-translate-y-1 duration-200 ease-linear text-white`}><i className={`${item.iconName}`}></i></Link>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SignUp
+

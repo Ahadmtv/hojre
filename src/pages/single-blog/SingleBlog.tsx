@@ -4,6 +4,8 @@ import PopularPosts from "../../components/shop-sec/PopularPosts"
 import PopularTags from "../../components/shop-sec/PopularTags"
 import { useParams } from "react-router-dom"
 import BlogDetails from "./BlogDetails"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 
 const SingleBlog: FC = () => {
     const blogList = [
@@ -183,6 +185,7 @@ const SingleBlog: FC = () => {
     const blog = blogList.filter((b)=>b.id===Number(id));
     return (
         <div>
+            <Navbar />
             <HeaderSecondry />
             <div className="bg-orange-50">
                 <div className="container mx-auto">
@@ -205,6 +208,7 @@ const SingleBlog: FC = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

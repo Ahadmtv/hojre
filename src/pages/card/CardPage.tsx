@@ -1,10 +1,13 @@
 import { FC } from 'react'
 import HeaderSecondry from '../../components/HeaderSecondry'
 import Quantity from '../../components/single-sec/Quantity'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
 const CardPage: FC = () => {
     return (
         <div>
+            <Navbar />
             <HeaderSecondry />
             <div>
                 <div className='container mx-auto'>
@@ -38,6 +41,8 @@ const CardPage: FC = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
+
         </div>
     )
 }

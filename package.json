@@ -18,6 +18,7 @@
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "countup.js": "^2.8.0",
+    "firebase": "^10.7.2",
     "json-server": "^1.0.0-alpha.21",
     "persianjs": "^0.4.0",
     "react": "^18.2.0",

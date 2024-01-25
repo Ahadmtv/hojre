@@ -6,10 +6,13 @@ import CategoryAll from "../../components/shop-sec/CategoryAll"
 import PopularPosts from "../../components/shop-sec/PopularPosts"
 import PopularTags from "../../components/shop-sec/PopularTags"
 import { useSelector } from "react-redux"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 const Shop = () => {
   const {filterdPro,productPerPage}=useSelector((state:any)=>state.products);
   return (
     <div>
+      <Navbar />
       <HeaderSecondry />
       {filterdPro && 
       <div>
@@ -33,6 +36,7 @@ const Shop = () => {
         </div>
       </div>
     }
+            <Footer />
     </div>
   )
 }

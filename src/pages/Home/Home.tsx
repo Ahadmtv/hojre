@@ -7,10 +7,13 @@ import MapHome from "../../components/home-sec/MapHome"
 import AboutHome from "../../components/home-sec/AboutHome"
 import AplicationHome from "../../components/home-sec/AplicationHome"
 import BrandHome from "../../components/home-sec/BrandHome"
+import Navbar from "../../components/Navbar"
+import Footer from "../../components/Footer"
 
 const Home: FC = () => {
   return (
     <div>
+      <Navbar />
       <Banner />
       <CatHome/>
       <ProductHome/>
@@ -19,6 +22,8 @@ const Home: FC = () => {
       <AboutHome/>
       <AplicationHome/>
       <BrandHome/>
+      <Footer />
+
     </div>
   )
 }

@@ -5,27 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
+import { useGetSponsorListQuery } from "../../Redux/hojre";
+interface sponsor {
+    imgUrl: string
+}
+
 const BrandHome: FC = () => {
-    const sponsorList = [
-        {
-            imgUrl: "./assets/images/sponsor/01.png",
-        },
-        {
-            imgUrl: "./assets/images/sponsor/02.png",
-        },
-        {
-            imgUrl: "./assets/images/sponsor/03.png",
-        },
-        {
-            imgUrl: "./assets/images/sponsor/04.png",
-        },
-        {
-            imgUrl: "./assets/images/sponsor/05.png",
-        },
-        {
-            imgUrl: "./assets/images/sponsor/06.png",
-        },
-    ];
+    const { data, isLoading, error } = useGetSponsorListQuery("");
     return (
         <div className="py-10 bg-gray-100">
             <div className="container mx-auto">
@@ -58,7 +44,7 @@ const BrandHome: FC = () => {
                     }
                     className="mySwiper"
                 >
-                    {sponsorList.map((sponsor,i) => {
+                    {data && data.map((sponsor: sponsor, i: number) => {
                         return (
                             <SwiperSlide className="" key={i}><img className="mx-auto" src={sponsor.imgUrl}></img></SwiperSlide>
                         )

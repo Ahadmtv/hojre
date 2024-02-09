@@ -1,39 +1,14 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
+import { useGetCatHomeQuery } from "../../Redux/hojre"
 
+interface catHome{
+    imgUrl: string
+    iconName: string
+    title: string
+}
 const CatHome:FC = () => {
-    const categoryList = [
-        {
-            imgUrl: './assets/images/category/01.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'دوربین',
-        },
-        {
-            imgUrl: './assets/images/category/02.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'کفش',
-        },
-        {
-            imgUrl: './assets/images/category/03.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'عکاسی',
-        },
-        {
-            imgUrl: './assets/images/category/04.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'لباس',
-        },
-        {
-            imgUrl: './assets/images/category/05.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'کیف',
-        },
-        {
-            imgUrl: './assets/images/category/06.jpg',
-            iconName: 'fa-brands fa-windows',
-            title: 'دکور خانه',
-        },
-    ]
+    const {data,isLoading,error}=useGetCatHomeQuery("");
     return (
         <div>
             <div className="container text-center mx-auto">
@@ -42,7 +17,7 @@ const CatHome:FC = () => {
                     <h2 className="text-md mb-5">هر چیزی که دنبالشی رو اینجا میتونی پیدا کنی</h2>
                 </div>
                 <div className="cat-sec grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {categoryList.map((cat,i) => {
+                    {data && data.map((cat:catHome,i:number) => {
                         return (
                             <div key={i} className="relative hover:-translate-y-1 transition duration-300 ease-in-out">
                                 <div className="relative">

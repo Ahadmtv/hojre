@@ -8,7 +8,32 @@ export const hojreApi = createApi({
       }),
       getSingleProduct:builder.query({
         query:(id)=>`products/${id}`
+      }),
+      getBlogs:builder.query({
+        query:()=>"blogs",
+      }),
+      getSingleBlog:builder.query({
+        query:(id)=>`blogs/${id}`,
+      }),
+      getCountList:builder.query({
+        query:()=> "countList"
+      }),
+      getSponsorList:builder.query({
+        query:()=> "sponsorList"
+      }),
+      getCatHome:builder.query({
+        query:()=> "catHome"
       })
     }),
   })
-  export const { useGetProductsQuery,useGetSingleProductQuery } = hojreApi
+  export const { 
+    useGetProductsQuery,
+    useGetSingleProductQuery,
+    useGetBlogsQuery,
+    useGetSingleBlogQuery,
+    useGetCountListQuery,
+    useGetSponsorListQuery,
+    useGetCatHomeQuery
+   }= hojreApi
+
+

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../Redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../Redux/hooks";
 
 const SignUp = () => {
   const socialList = [
@@ -32,7 +32,7 @@ const SignUp = () => {
     },
   ]
   const navigate = useNavigate();
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");

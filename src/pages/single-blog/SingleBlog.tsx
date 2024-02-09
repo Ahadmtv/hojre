@@ -192,7 +192,7 @@ const SingleBlog: FC = () => {
                     <div className="flex flex-col-reverse lg:flex-row py-16 gap-x-6">
                         {/* ارسال محصول به کامپوننت  */}
                         <div className="w-full lg:w-[65%]">
-                            <BlogDetails blog={blog}/>
+                            <BlogDetails/>
                             
                         </div>
                         <div className="w-full lg:w-[35%]">

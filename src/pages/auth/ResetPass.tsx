@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { resetPass } from "../../Redux/authSlice";
+import { useAppDispatch } from "../../Redux/hooks";
 
 const ResetPass = () => {
     const socialList = [
@@ -31,7 +31,7 @@ const ResetPass = () => {
             className: 'pinterest',
         },
     ]
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
     const [email, setEmail] = useState("");
     const navigate=useNavigate();
     const reset = async (e: FormEvent<HTMLFormElement>) => {

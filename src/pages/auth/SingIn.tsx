@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import { signIn } from '../../Redux/authSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../Redux/hooks';
 
 const SingIn = () => {
   const socialList = [
@@ -31,17 +31,19 @@ const SingIn = () => {
       className: 'pinterest',
     },
   ]
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const goIn = (e: FormEvent<HTMLFormElement>) => {
+  const goIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try{
-      dispatch(signIn({ email, password }));
-    }catch(error){
+    try {
+      const result = await dispatch(signIn({ email, password }));
+      navigate("/");
+    } catch (error) {
       alert(error);
     }
-   
+
   }
   return (
     <div className="bg-orange-50">
@@ -53,7 +55,7 @@ const SingIn = () => {
               <input className="border-2 py-2 px-2 rounded-md" type="text" placeholder="ایمیل" name="email" onChange={(e) => setEmail(e.target.value)} required />
               <input className="border-2 py-2 px-2 rounded-md" type="password" placeholder="رمز عبور" name="password" onChange={(e) => setPassword(e.target.value)} required />
               <Link className="font-vazir-thin text-gray-800" to="/resetpass">فراموشی رمز عبور</Link>
-              <button className="inline-block w-full bg-orange-600 text-white p-2 text-center rounded mt-5" type="submit">ثبت نام</button>
+              <button className="inline-block w-full bg-orange-600 text-white p-2 text-center rounded mt-5" type="submit">ورود</button>
             </form>
             <div>
               <div className="flex flex-col justify-center items-center gap-y-4 mt-8">

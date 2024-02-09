@@ -7,6 +7,7 @@ import { Iproduct } from "./CategoryAll"
 import { useGetProductsQuery } from "../../Redux/hojre"
 import { useDispatch, useSelector } from "react-redux"
 import { setFilterdPro } from "../../Redux/ProductsSlice"
+import { useAppDispatch } from "../../Redux/hooks"
 interface Idata {
     id: string
     category: string
@@ -26,7 +27,7 @@ const ProductCards: FC = () => {
     const { filterdPro, currentPage, productPerPage } = useSelector((state: any) => state.products);
     const lastIndex = productPerPage * currentPage;
     const firstIndex = lastIndex - productPerPage;
-    const Dispatch = useDispatch();
+    const Dispatch = useAppDispatch();
     const { data, isLoading, error } = useGetProductsQuery("");
     useEffect(() => {
         if (data) {
@@ -68,7 +69,7 @@ const ProductCards: FC = () => {
                                     </div>
                                 </div>
                                 <div className={`flex justify-center flex-col ${styleGrid ? "items-center gap-2 mt-2" : "gap-4 mr-10"}`}>
-                                    <div className="text-center"><Link to={`/فروشگاه/${pro.id}`}>{pro.name}</Link></div>
+                                    <div className="text-center"><Link to={`/shop/${pro.id}`}>{pro.name}</Link></div>
                                     <div className="text-amber-300"><Ratting /></div>
                                     <div>{persian(pro.price).englishNumber().toString()}تومان</div>
                                 </div>

@@ -248,3 +248,12 @@
     }
 
 }
+
+/* شخصی سازی نوتیفیکشن پکیج توستیفای */
+
+.Toastify__toast-body {
+    font-family: 'vazir', sans-serif; 
+    font-size: 15px;
+    direction: rtl;
+  }
+/* //////////////////////////////////// */

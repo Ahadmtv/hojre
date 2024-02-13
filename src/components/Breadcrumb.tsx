@@ -5,7 +5,7 @@ interface Iprops {
     path: string[]
 }
 const Breadcrumb: FC<Iprops> = ({ path }) => {
-    let pathLinks="";
+    let pathLinks = "";
     return (
         <>
             <nav className="flex" aria-label="Breadcrumb">
@@ -23,7 +23,7 @@ const Breadcrumb: FC<Iprops> = ({ path }) => {
 
                     {path.map((p, i) => {
                         const isLast = i === path.length - 1;
-                        !isLast?pathLinks += `/${p}`: pathLinks=pathLinks
+                        !isLast ? pathLinks += `/${p}` : pathLinks = pathLinks
                         return (
                             <div key={i}>
                                 {!isLast &&

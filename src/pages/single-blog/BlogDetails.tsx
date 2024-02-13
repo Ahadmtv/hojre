@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom"
 import { useGetSingleBlogQuery } from "../../Redux/hojre"
 const BlogDetails: FC = () => {
     const { id } = useParams();
-    console.log(id);
     const { data, isLoading, error } = useGetSingleBlogQuery(id);
     return (
         <div>

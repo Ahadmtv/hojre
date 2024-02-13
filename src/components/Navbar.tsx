@@ -1,13 +1,12 @@
 import { FC, useState } from "react"
-import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
+import { useAppSelector } from "../Redux/hooks";
 
 
 const Navbar: FC = () => {
     const [menuToggle, setMenuToggle] = useState<boolean>(false);
     const [authToggle, setAuthToggle] = useState<boolean>(false);
-    const user: any = useSelector<any>((state) => state.auth.user);
-    console.log(user)
+    const user:any = useAppSelector((state) => state.auth.user);
     const showMenu = () => {
         setMenuToggle(!menuToggle);
     }
@@ -21,8 +20,8 @@ const Navbar: FC = () => {
                     {Object.keys(user).length === 0 &&
                         <div className="flex justify-between px-8 md:hidden">
                             {/* کلاس شخصی سازی شده  */}
-                            <div className={` my-5 ${authToggle ? "block" : "hidden"}`}><Link className="btn-auth" to="signin">ورود</Link></div>
-                            <div className={` my-5 ${authToggle ? "block" : "hidden"}`}><Link className="btn-auth" to="signup">ثبت نام</Link></div>
+                            <div className={` my-5 ${authToggle ? "block" : "hidden"}`}><Link className="btn-auth" to="/signin">ورود</Link></div>
+                            <div className={` my-5 ${authToggle ? "block" : "hidden"}`}><Link className="btn-auth" to="/signup">ثبت نام</Link></div>
                         </div>
                     }
                     <div className="flex align-middle p-2">
@@ -37,13 +36,13 @@ const Navbar: FC = () => {
                     {Object.keys(user).length === 0 &&
                         <div className=" justify-center align-middle hidden md:flex mr-4">
                             {/* کلاس شخصی سازی شده  */}
-                            <div className="flex justify-center items-center"  ><Link className="btn-auth" to="signin">ورود</Link></div>
+                            <div className="flex justify-center items-center"  ><Link className="btn-auth" to="/signin">ورود</Link></div>
                             <div className="flex justify-center items-center"  ><Link className="btn-auth mr-2 " to="/signup">ثبت نام</Link></div>
                         </div>
                     }
                     {Object.keys(user).length !== 0 &&
                         <div className=" justify-center align-middle hidden md:flex mr-4">
-                            <div className="flex justify-center items-center">{user.email}</div>
+                            <div className="flex justify-center items-center"><Link to="/cart">{user.email}</Link></div>
                         </div>
                     }
                     <div className="mr-5 lg:flex justify-center items-center hidden ">

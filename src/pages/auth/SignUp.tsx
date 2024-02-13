@@ -1,7 +1,10 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { signUp } from "../../Redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../Redux/hooks";
+import { toast } from "react-toastify";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase/Config";
 
 const SignUp = () => {
   const socialList = [
@@ -41,13 +44,39 @@ const SignUp = () => {
     e.preventDefault();
     if (password === confirmPassword) {
       try {
-        const result = await dispatch(signUp({ email, password }));
-        navigate("/");
+        const result: any = await dispatch(signUp({ email, password }));
+        if (result.error) {
+          switch (result.error.message) {
+            case "Firebase: Error (auth/invalid-email).":
+              toast.error("ایمیل معتبر وارد کنید")
+              break;
+            case "Firebase: Password should be at least 6 characters (auth/weak-password).":
+              toast.error("رمز عبور باید حداقل 6 کاراکتر باشد")
+              break;
+            case "Firebase: Error (auth/email-already-in-use).":
+              toast.error("این ایمیل قبلا استفاده شده است")
+              break;
+            default:
+              break;
+          }
+        } else {
+          navigate("/");
+          toast.success("ثبت نام با موفقیت انجام شد");
+
+          // ارسال مشخصات یوزر به دیتابیس 
+
+          let userData = JSON.parse(JSON.stringify(result.payload.providerData[0]));
+          const docRef = await setDoc(doc(db, "users", result.payload.providerData[0].uid), {
+            ...userData
+          });
+
+          /////////////////////////////////
+        }
       } catch (error) {
-        alert(error);
+        toast.error("خطایی رخ داده است");
       }
     } else {
-      alert("رمز عبور با تایید رمز عبور مطابقت ندارد")
+      toast.error("رمز عبور با تایید رمز عبور مطابقت ندارد");
     }
   }
   return (

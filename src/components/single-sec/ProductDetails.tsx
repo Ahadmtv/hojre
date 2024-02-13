@@ -4,7 +4,11 @@ import Ratting from "../Ratting"
 import Quantity from "./Quantity"
 import persian from "persianjs"
 import { useGetSingleProductQuery } from "../../Redux/hojre"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { doc, getDoc, updateDoc } from "firebase/firestore"
+import { Auth, db } from "../../firebase/Config"
+import { onAuthStateChanged } from "firebase/auth"
+import { toast } from "react-toastify"
 
 interface Iprops {
     product: Iproduct[]
@@ -12,18 +16,81 @@ interface Iprops {
 const ProductDetails: FC = () => {
     const { id } = useParams<(string)>();
     const { data, isLoading, error } = useGetSingleProductQuery(id);
-
-
+    const navigate = useNavigate();
     const [color, setColor] = useState<string>("");
     const [size, setSize] = useState<string>("");
     const [copon, setCopon] = useState<string>("");
     const [quantity, setQuantity] = useState<number>(1);
+
+    let uid: string = ""
+    let userData: any
+
+    onAuthStateChanged(Auth, (user) => {
+        if (user) {
+            uid = user.providerData[0].uid;
+            const docRef = doc(db, 'users', uid);
+            getDoc(docRef)
+                .then((docSnap) => {
+                    if (docSnap.exists()) {
+                        userData = docSnap.data()
+                    } else {
+                        console.log('No such document!');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error getting document:', error);
+                });
+
+        }
+    });
+
+
+
+
     // تابع اضافه به سبد خرید 
 
-    const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
+    const handleAdd = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        console.log(uid)
+        if (uid) {
+            const userRef = doc(db, "users", uid);
+            if (userData.userCartProduct) {
+                await updateDoc(userRef, {
+                    userCartProduct: [
+                        ...userData.userCartProduct,
+                        {
+                            id: id,
+                            name: data.name,
+                            image: data.img,
+                            price: data.price,
+                            color: color,
+                            quantity: quantity
+                        }
+                    ]
+                });
+                toast.success("به سبد خرید اضافه شد");
+            } else {
+                await updateDoc(userRef, {
+                    userCartProduct: [
+                        {
+                            id: id,
+                            name: data.name,
+                            image: data.img,
+                            price: data.price,
+                            color: color,
+                            quantity: quantity
+                        }
+                    ]
+                });
+                toast.success("به سبد خرید اضافه شد");
+            }
+        } else {
+            navigate("/signup")
+        }
+
+
     }
-    // تابع نشان دادن صورت جساب
+    // تابع نشان دادن صورت حساب
     const handleCheck = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
     }

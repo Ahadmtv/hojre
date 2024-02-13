@@ -1,36 +1,17 @@
 import { FC, MouseEvent, useState } from "react"
 import Ratting from "../../components/Ratting";
+import { useGetProductReviewQuery } from "../../Redux/hojre";
+
+interface Review {
+    imgUrl: string
+    imgAlt:string
+    name: string
+    date: string
+    desc:string
+}
 
 const ReviewDescProduct: FC = () => {
-    let ReviewList = [
-        {
-            imgUrl: "/assets/images/instructor/01.jpg",
-            imgAlt: "نمایه مخاطب",
-            name: "کاربر اول",
-            date: "نوشته شده در 17 خرداد 1402",
-            desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد ",
-        },
-        {
-            imgUrl: "/assets/images/instructor/02.jpg",
-            imgAlt: "نمایه مخاطب",
-            name: "کاربر دوم",
-            date: "نوشته شده در 17 خرداد 1402",
-            desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد ",
-        },
-        {
-            imgUrl: "/assets/images/instructor/03.jpg",
-            imgAlt: "نمایه مخاطب",
-            name: "کاربر سوم",
-            date: "نوشته شده در 17 خرداد 1402",
-            desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد ",
-        },
-        {
-            imgUrl: "/assets/images/instructor/04.jpg",
-            imgAlt: "نمنوشته شده در 17 خرداد 1402",
-            date: "نوشته شده در 17 خرداد 1402",
-            desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد "
-        }
-    ];
+    const {data,isLoading,error}=useGetProductReviewQuery("");
     const [reviewShow, setReviewShow] = useState<boolean>(false);
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -66,7 +47,7 @@ const ReviewDescProduct: FC = () => {
                 </div>}
                 {reviewShow && <div>
                     <div>
-                        {ReviewList.map((r, i) => {
+                        {data && data.map((r:Review, i:number) => {
                             return (
                                 <div key={i} className="flex items-center gap-y-2 border-b-2 py-2">
                                     <div className="w-[10%] p-4"><div><img src={window.location.origin + r.imgUrl} alt={r.imgAlt}></img></div></div>

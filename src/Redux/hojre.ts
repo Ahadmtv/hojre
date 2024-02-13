@@ -23,6 +23,15 @@ export const hojreApi = createApi({
       }),
       getCatHome:builder.query({
         query:()=> "catHome"
+      }),
+      getProductReview:builder.query({
+        query:()=>"productReview"
+      }),
+      getPopularPosts:builder.query({
+        query:()=>"topPosts"
+      }),
+      getTopTags:builder.query({
+        query:()=> "topTags"
       })
     }),
   })
@@ -33,7 +42,10 @@ export const hojreApi = createApi({
     useGetSingleBlogQuery,
     useGetCountListQuery,
     useGetSponsorListQuery,
-    useGetCatHomeQuery
+    useGetCatHomeQuery,
+    useGetProductReviewQuery,
+    useGetPopularPostsQuery,
+    useGetTopTagsQuery,
    }= hojreApi
 
 

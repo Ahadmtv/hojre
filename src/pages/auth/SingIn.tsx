@@ -1,8 +1,9 @@
 import { FormEvent, useState } from 'react'
 import { signIn } from '../../Redux/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../Redux/hooks';
-
+import { useAppDispatch, useAppSelector } from '../../Redux/hooks';
+import { toast } from 'react-toastify';
+import Loader from '../../components/loader/Loader';
 const SingIn = () => {
   const socialList = [
     {
@@ -31,6 +32,7 @@ const SingIn = () => {
       className: 'pinterest',
     },
   ]
+  const isLoading=useAppSelector((state)=>state.auth.isLoading);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -38,15 +40,20 @@ const SingIn = () => {
   const goIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const result = await dispatch(signIn({ email, password }));
-      navigate("/");
+      const result: any = await dispatch(signIn({ email, password }));
+      if (result.error) {
+        toast.error("نام کاربری یا رمز عبور صحیح نمی باشد");
+      } else {
+        navigate("/");
+        toast.success("با موفقیت وارد شدید ");
+      }
     } catch (error) {
-      alert(error);
+      toast.error("خطایی رخ داده دوباره تلاش کنید");
     }
-
   }
   return (
     <div className="bg-orange-50">
+      {isLoading && <Loader/>}
       <div className="container mx-auto h-[100vh] flex justify-center items-center">
         <div className=" py-10 px-[120px] my-shadow min-w-[550px] bg-white">
           <div>

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react"
-import productData from "../../products.json"
 import SelectCat from "../SelectCat";
 import { Link } from "react-router-dom";
+import { useGetProductsQuery } from "../../Redux/hojre";
 
 interface Iproduct {
     "id": string;
@@ -18,13 +18,14 @@ interface Iproduct {
 }
 
 const Banner: FC = () => {
+    const {data, isLoading,error}=useGetProductsQuery("");
     const [searchValue, setSearchValue] = useState<string>("");
     const [filterd, setFilterd] = useState<Iproduct[]>([]);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const searchTerm = e.target.value;
         setSearchValue(searchTerm);
         if (e.target.value) {
-            setFilterd(productData.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase())));
+            setFilterd(data && data.filter((product:Iproduct) => product.name.toLowerCase().includes(searchTerm.toLowerCase())));
         } else {
             setFilterd([])
         }

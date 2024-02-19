@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Link } from "react-router-dom";
-import { useGetTopTagsQuery } from "../../Redux/hojre";
+import GetFirestore from "../../hooks/GetFirestore";
 
 
 interface topTag{
@@ -8,9 +8,9 @@ interface topTag{
     text: string
 }
 const PopularTags: FC = () => {
-    const {data,isLoading,error}=useGetTopTagsQuery("");
+    const {data}=GetFirestore("topTags");
     return (
-        <div className="my-shadow md:w-1/2 lg:w-auto">
+        <div className="my-shadow md:w-1/2 lg:w-auto bg-white">
             <div className="px-3 py-4"><h3 className="text-xl ">تگ های پربازدید</h3></div>
             <div className="flex flex-wrap gap-5 border-t-2 px-3 py-4">
                 {data && data.map((tag:topTag,i:number)=>{

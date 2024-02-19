@@ -2,6 +2,8 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 import { useGetCatHomeQuery } from "../../Redux/hojre"
 import Loader from "../loader/Loader"
+import GetFirestore from "../../hooks/GetFirestore"
+import { useAppSelector } from "../../Redux/hooks"
 
 interface catHome{
     imgUrl: string
@@ -9,7 +11,8 @@ interface catHome{
     title: string
 }
 const CatHome:FC = () => {
-    const {data,isLoading,error}=useGetCatHomeQuery("");
+    const isLoading=useAppSelector((state)=>state.auth.isLoading);
+    const {data}=GetFirestore("catHome");
     return (
         <div>
             {isLoading && <Loader/>}

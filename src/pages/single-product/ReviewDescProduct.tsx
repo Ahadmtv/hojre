@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useState } from "react"
 import Ratting from "../../components/Ratting";
 import { useGetProductReviewQuery } from "../../Redux/hojre";
+import GetFirestore from "../../hooks/GetFirestore";
 
 interface Review {
     imgUrl: string
@@ -11,7 +12,7 @@ interface Review {
 }
 
 const ReviewDescProduct: FC = () => {
-    const {data,isLoading,error}=useGetProductReviewQuery("");
+    const {data}=GetFirestore("productReview")
     const [reviewShow, setReviewShow] = useState<boolean>(false);
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();

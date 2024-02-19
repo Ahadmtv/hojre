@@ -6,12 +6,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import { useGetSponsorListQuery } from "../../Redux/hojre";
+import GetFirestore from "../../hooks/GetFirestore";
 interface sponsor {
     imgUrl: string
 }
 
 const BrandHome: FC = () => {
-    const { data, isLoading, error } = useGetSponsorListQuery("");
+    // const { data, isLoading, error } = useGetSponsorListQuery("");
+    const {data}=GetFirestore("sponsorList");
     return (
         <div className="py-10 bg-gray-100">
             <div className="container mx-auto">

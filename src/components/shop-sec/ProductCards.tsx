@@ -11,6 +11,7 @@ import Loader from "../loader/Loader"
 import { setLoading } from "../../Redux/authSlice"
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "../../firebase/Config"
+import GetFirestore from "../../hooks/GetFirestore"
 interface Idata {
     id: string
     category: string
@@ -28,54 +29,21 @@ interface Idata {
 
 const ProductCards: FC = () => {
     const { filterdPro, currentPage, productPerPage } = useSelector((state: any) => state.products);
+    const isLoading=useAppSelector((state)=>state.auth.isLoading);
     const lastIndex = productPerPage * currentPage;
     const firstIndex = lastIndex - productPerPage;
     const Dispatch = useAppDispatch();
+    
+// استفاده از هوک دریافت اطلاعات فایر استور 
 
-    //دریافت داده ها از فایل جیسون  داخلی 
-
-    const { data, isLoading, error } = useGetProductsQuery("");
-
+    const { data } = GetFirestore("products");
     useEffect(() => {
         if (data) {
             Dispatch(setFilterdPro(data));
         }
-    }, [data])
+    }, [data]);
 
-    // دیافت داده از فایر استور 
-
-    // const [userData, setUserData] = useState<any>();
-    // const dispath = useAppDispatch();
-    // const isLoading = useAppSelector((state) => state.auth.isLoading)
-    // useEffect(() => {
-    //     dispath(setLoading(true));
-    //     const docRef = doc(db, 'products', 'products');
-    //     getDoc(docRef)
-    //         .then((docSnap) => {
-    //             if (docSnap.exists()) {
-    //                 setUserData(docSnap.data());
-    //             } else {
-    //                 console.log('No such document!');
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error getting document:', error);
-    //         })
-    //         .finally(() => {
-    //             dispath(setLoading(false));
-    //         })
-    // }, []);
-    // useEffect(() => {
-    //     if (userData) {
-    //         const data: any[] = [];
-    //         Object.values(userData).forEach((value: any) => {
-    //             data.push(value);
-    //         })
-    //         Dispatch(setFilterdPro(data));
-    //     }
-    // }, [userData]);
-
-
+//////////////////////////////////////////
     const [styleGrid, setStyleGrid] = useState<boolean>(true);
     const ahad = filterdPro.slice(firstIndex, lastIndex);
     // فانکشن های مربوط با اسلاید روی عکس محصولات

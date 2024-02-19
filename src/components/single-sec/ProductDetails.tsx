@@ -12,15 +12,17 @@ import { toast } from "react-toastify"
 import Loader from "../loader/Loader"
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import { cartinfo, setLoading } from "../../Redux/authSlice"
+import GetFirestore from "../../hooks/GetFirestore"
 
 interface Iprops {
     product: Iproduct[]
 }
 const ProductDetails: FC = () => {
     const { id } = useParams<(string)>();
+    const isLoading = useAppSelector((state) => state.auth.isLoading);
     const isLoadingB = useAppSelector((state) => state.auth.isLoading);
     const dispatch = useAppDispatch();
-    const { data, isLoading, error } = useGetSingleProductQuery(id);
+    const {data} = GetFirestore("products",id);
     const navigate = useNavigate();
     const [color, setColor] = useState<string>("");
     const [size, setSize] = useState<string>("");

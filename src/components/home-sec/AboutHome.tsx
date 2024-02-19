@@ -4,6 +4,8 @@ import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { Link } from "react-router-dom";
 import { useGetCountListQuery } from "../../Redux/hojre";
+import GetFirestore from "../../hooks/GetFirestore";
+import { useAppSelector } from "../../Redux/hooks";
 
 interface countList {
     iconName: string
@@ -12,27 +14,8 @@ interface countList {
     color: string
 }
 const AboutHome: FC = () => {
-    const countList = [
-        {
-            iconName: 'fa-solid fa-users',
-            count: '12600',
-            text: 'تعداد فراگیران',
-            color: '#F94C10'
-        },
-        {
-            iconName: 'fa-solid fa-user-graduate',
-            count: '30',
-            text: 'دوره های آموزشی',
-            color: '#00A86B'
-        },
-        {
-            iconName: 'fa-solid fa-bell',
-            count: '100',
-            text: 'هدایا و جوایز دوره',
-            color: '#419197'
-        },
-    ]
-    const { data, isLoading, error } = useGetCountListQuery("");
+    const isLoading=useAppSelector((state)=>state.auth.isLoading);
+    const {data}=GetFirestore("countList");
     const [inViewRef, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,

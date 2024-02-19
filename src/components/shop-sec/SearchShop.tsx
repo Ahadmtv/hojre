@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react"
 import { Link } from "react-router-dom";
-import { useGetProductsQuery } from "../../Redux/hojre";
+import GetFirestore from "../../hooks/GetFirestore";
 interface Iproduct {
     "id": string;
     "category": string;
@@ -15,7 +15,7 @@ interface Iproduct {
     "quantity": number;
 }
 const SearchShop: FC = () => {
-    const {data,isLoading,error}=useGetProductsQuery("");
+    const {data}=GetFirestore("products");
     const [searchValue, setSearchValue] = useState<string>("");
     const [filterd, setFilterd] = useState<Iproduct[]>([]);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
-import { useGetProductsQuery } from "../../Redux/hojre";
 import { useDispatch } from "react-redux";
 import { setCurrentPage, setFilterdPro } from "../../Redux/ProductsSlice";
+import GetFirestore from "../../hooks/GetFirestore";
 export interface Iproduct {
     "id": string;
     "category": string;
@@ -17,7 +17,7 @@ export interface Iproduct {
 }
 const CategoryAll: FC = () => {
     const [status, setStatus] = useState<string>("همه");
-    const { data, isLoading, error } = useGetProductsQuery("products");
+    const {data}=GetFirestore("products")
     const categoryList = ["همه", ...new Set(data?.map((d: any) => d.category))];
     const Dispatch = useDispatch();
     const changeCate = (val: string) => {

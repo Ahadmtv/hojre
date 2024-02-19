@@ -1,15 +1,18 @@
 import { FC } from "react"
 import { useParams } from "react-router-dom"
-import { useGetSingleBlogQuery } from "../../Redux/hojre"
+import GetFirestore from "../../hooks/GetFirestore";
+import { useAppSelector } from "../../Redux/hooks";
+import Loader from "../../components/loader/Loader";
 const BlogDetails: FC = () => {
+    const isLoading = useAppSelector((state) => state.auth.isLoading);
     const { id } = useParams();
-    const { data, isLoading, error } = useGetSingleBlogQuery(id);
+    const { data } = GetFirestore("blogs", id);
+
     return (
         <div>
-            {error && <div>خطا</div>}
-            {isLoading && <div> صبر کنید ...</div>}
+            {isLoading && <Loader />}
             {data &&
-                <div>
+                <div className="bg-white">
                     <div><img className="w-full" src={window.location.origin + data.imgUrl}></img></div>
                     <div>
                         <div><h2 className="text-3xl">{data.title}</h2></div>

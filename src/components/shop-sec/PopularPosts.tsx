@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { useGetPopularPostsQuery } from "../../Redux/hojre"
+import GetFirestore from "../../hooks/GetFirestore"
 
 interface topPost{
     id: string
@@ -10,9 +11,9 @@ interface topPost{
     date: string
 }
 const PopularPosts: FC = () => {
-    const { data, isLoading, error } = useGetPopularPostsQuery("");
+    const {data}=GetFirestore("topPosts");
     return (
-        <div className="my-shadow md:w-1/2 lg:w-auto">
+        <div className="my-shadow md:w-1/2 lg:w-auto bg-white">
             <h3 className="px-3 text-xl py-3">مطالب پربازدید</h3>
             <div className="flex flex-wrap ">
                 {data && data.map((post:topPost) => {

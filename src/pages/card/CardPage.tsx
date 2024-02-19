@@ -1,15 +1,22 @@
-import { FC, MouseEvent, useCallback, useEffect, useState } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 import HeaderSecondry from '../../components/HeaderSecondry'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Auth, db } from '../../firebase/Config'
 import { arrayRemove, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { useAppDispatch, useAppSelector } from '../../Redux/hooks'
+import { cartinfo, setLoading } from '../../Redux/authSlice'
+import Loader from '../../components/loader/Loader'
+import { toast } from 'react-toastify'
+import persian from "persianjs"
+
 
 // بررسی کاربران فعال در حال حاضر سایت و دریافت اطلاعات آن
 
 const CardPage: FC = () => {
-
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector((state) => state.auth.isLoading)
     const [uid, setUid] = useState<string>("");
     const [cartProducts, setCartProducts] = useState<any[]>([]);
     const [userData, setUserData] = useState<any>();
@@ -21,13 +28,14 @@ const CardPage: FC = () => {
             }
         });
     }, []);
-////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
 
-// دریافت اطلاعات حساب کاربر مورد نظر /////////
+    // دریافت اطلاعات حساب کاربر مورد نظر /////////
 
 
     useEffect(() => {
         if (uid !== "") {
+            dispatch(setLoading(true));
             const docRef = doc(db, 'users', uid);
             getDoc(docRef)
                 .then((docSnap) => {
@@ -44,13 +52,14 @@ const CardPage: FC = () => {
 
     }, [uid, deleteProducts]);
 
-////////////////////////////////
+    ////////////////////////////////
 
     //به دست آوردن محصولات سبد خرید کاربر
 
     useEffect(() => {
         if (userData) {
             setCartProducts(userData.userCartProduct);
+            dispatch(setLoading(false));
         }
     }, [userData]);
 
@@ -61,6 +70,7 @@ const CardPage: FC = () => {
 
     const deleteProduct = async (e: MouseEvent<HTMLButtonElement>, id: any) => {
         e.preventDefault();
+        dispatch(setLoading(true));
         const filter = cartProducts.filter((p) => {
             return p.id === id
         })
@@ -71,20 +81,25 @@ const CardPage: FC = () => {
 
     useEffect(() => {
         if (deleteProducts.length > 0) {
-          const removeProduct = async () => {
-            const productRef = doc(db, 'users', uid);
-            await updateDoc(productRef, {
-              userCartProduct: arrayRemove(deleteProducts[0])
-            });
-          };
-          removeProduct();
+            const removeProduct = async () => {
+                const productRef = doc(db, 'users', uid);
+                await updateDoc(productRef, {
+                    userCartProduct: arrayRemove(deleteProducts[0])
+                });
+                dispatch(setLoading(false));
+                toast.success("محصول از سبد حذف شد");
+                //آپدیت تعداد محصولات سبد خرید
+                await dispatch(cartinfo({ uid }));
+            };
+            removeProduct();
         }
-      }, [deleteProducts]);
+    }, [deleteProducts]);
 
 
-      //////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////
     return (
         <div>
+            {isLoading && <Loader />}
             <Navbar />
             <HeaderSecondry />
             <div>
@@ -111,12 +126,12 @@ const CardPage: FC = () => {
                                                     <span>{p.name}</span>
                                                 </div>
                                             </td>
-                                            <td className='bg-gray-200 text-center'><div>{p.price + "تومان"}</div></td>
+                                            <td className='bg-gray-200 text-center'><div>{persian(p.price).englishNumber().toString() + "تومان"}</div></td>
                                             <td className='bg-gray-200 text-center'>
-                                                <div>{p.quantity}</div>
+                                                <div>{persian(p.quantity).englishNumber().toString()}</div>
                                             </td>
                                             <td className='bg-gray-200 text-center'>{p.color}</td>
-                                            <td className='bg-gray-200 text-center'><div>{(p.quantity * p.price) + "تومان"}</div></td>
+                                            <td className='bg-gray-200 text-center'><div>{persian(p.quantity * p.price).englishNumber().toString() + "تومان"}</div></td>
                                             <td className='bg-gray-200 text-center'>
                                                 <button onClick={(e) => deleteProduct(e, p.id)} className='p-2 hover:text-red-600 transition duration-200 ease-linear'><i className="text-xl fa-solid fa-trash"></i></button>
                                             </td>

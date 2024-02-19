@@ -1,10 +1,11 @@
 import { FormEvent, useEffect, useState } from "react";
 import { signUp } from "../../Redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { toast } from "react-toastify";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/Config";
+import Loader from "../../components/loader/Loader";
 
 const SignUp = () => {
   const socialList = [
@@ -34,6 +35,7 @@ const SignUp = () => {
       className: 'pinterest',
     },
   ]
+  const isLoading = useAppSelector((state) => state.auth.isLoading);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
@@ -67,7 +69,8 @@ const SignUp = () => {
 
           let userData = JSON.parse(JSON.stringify(result.payload.providerData[0]));
           const docRef = await setDoc(doc(db, "users", result.payload.providerData[0].uid), {
-            ...userData
+            ...userData,
+            displayName: fullname
           });
 
           /////////////////////////////////
@@ -81,6 +84,7 @@ const SignUp = () => {
   }
   return (
     <div className="bg-orange-50">
+      {isLoading && <Loader />}
       <div className="container mx-auto h-[100vh] flex justify-center items-center">
         <div className=" py-10 px-[120px] my-shadow min-w-[550px] bg-white">
           <div>

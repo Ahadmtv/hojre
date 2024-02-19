@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home, Shop, Blog, About, Contact } from "./pages/index"
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import SingleProduct from './pages/single-product/singleProduct';
 import CardPage from './pages/card/CardPage';
 import SingleBlog from './pages/single-blog/SingleBlog';
@@ -12,7 +12,29 @@ import Privet from './pages/privet-route/Privet';
 import ScrollTop from './components/ScrollTop';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from './firebase/Config';
+import { useAppDispatch, useAppSelector } from './Redux/hooks';
+import { cartinfo, setLoading } from './Redux/authSlice';
+import Profile from './pages/profile/Profile';
+
 const App: FC = () => {
+
+
+  // import data from json server to the firestore
+
+  // useEffect(() => {
+  //   const ahad = async () => {
+  //     const response = await fetch('http://localhost:3000/topTags');
+  //     const data = await response.json();
+  //     await setDoc(doc(db, "topTags","topTags"), {
+  //       ...data
+  //     });
+  //   }
+  //   ahad()
+  // }, [])
+
+  //  
   return (
     <>
       <ToastContainer />
@@ -30,6 +52,7 @@ const App: FC = () => {
             <Route path='/blogs' element={<Blog />} />
             <Route path='/shop/:id' element={<SingleProduct />} />
             <Route path='/cart' element={<Privet><CardPage /></Privet>} />
+            <Route path='/profile' element={<Privet><Profile/></Privet>} />
             <Route path='/blogs/:id' element={<SingleBlog />} />
           </Routes>
         </BrowserRouter>
@@ -38,3 +61,6 @@ const App: FC = () => {
   );
 }
 export default App;
+
+
+

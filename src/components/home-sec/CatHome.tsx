@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { useGetCatHomeQuery } from "../../Redux/hojre"
+import Loader from "../loader/Loader"
 
 interface catHome{
     imgUrl: string
@@ -11,6 +12,7 @@ const CatHome:FC = () => {
     const {data,isLoading,error}=useGetCatHomeQuery("");
     return (
         <div>
+            {isLoading && <Loader/>}
             <div className="container text-center mx-auto">
                 <div className="header-sec">
                     <h2 className="text-3xl my-5 text-amber-400 font-vazir-bold">از ما خرید کنید </h2>

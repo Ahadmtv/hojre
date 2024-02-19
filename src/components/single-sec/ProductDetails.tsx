@@ -9,12 +9,17 @@ import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { Auth, db } from "../../firebase/Config"
 import { onAuthStateChanged } from "firebase/auth"
 import { toast } from "react-toastify"
+import Loader from "../loader/Loader"
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
+import { cartinfo, setLoading } from "../../Redux/authSlice"
 
 interface Iprops {
     product: Iproduct[]
 }
 const ProductDetails: FC = () => {
     const { id } = useParams<(string)>();
+    const isLoadingB = useAppSelector((state) => state.auth.isLoading);
+    const dispatch = useAppDispatch();
     const { data, isLoading, error } = useGetSingleProductQuery(id);
     const navigate = useNavigate();
     const [color, setColor] = useState<string>("");
@@ -50,8 +55,8 @@ const ProductDetails: FC = () => {
     // تابع اضافه به سبد خرید 
 
     const handleAdd = async (e: MouseEvent<HTMLButtonElement>) => {
+        dispatch(setLoading(true));
         e.preventDefault();
-        console.log(uid)
         if (uid) {
             const userRef = doc(db, "users", uid);
             if (userData.userCartProduct) {
@@ -69,6 +74,9 @@ const ProductDetails: FC = () => {
                     ]
                 });
                 toast.success("به سبد خرید اضافه شد");
+                dispatch(setLoading(false));
+                //آپدیت تعداد محصولات سبد خرید
+                await dispatch(cartinfo({ uid }));
             } else {
                 await updateDoc(userRef, {
                     userCartProduct: [
@@ -83,9 +91,13 @@ const ProductDetails: FC = () => {
                     ]
                 });
                 toast.success("به سبد خرید اضافه شد");
+                dispatch(setLoading(false));
+                //آپدیت تعداد محصولات سبد خرید
+                await dispatch(cartinfo({ uid }));
             }
         } else {
-            navigate("/signup")
+            navigate("/signup");
+            dispatch(setLoading(false));
         }
 
 
@@ -96,6 +108,8 @@ const ProductDetails: FC = () => {
     }
     return (
         <div className="my-shadow p-4 rounded-md">
+            {isLoading && <Loader />}
+            {isLoadingB && <Loader />}
             {data &&
                 <div className="flex flex-col md:flex-row">
                     <div className="iamge w-full md:w-1/2">

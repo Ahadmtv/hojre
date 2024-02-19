@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { signIn } from '../../Redux/authSlice';
+import { cartinfo, signIn } from '../../Redux/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hooks';
 import { toast } from 'react-toastify';
@@ -37,6 +37,8 @@ const SingIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useAppSelector((state)=>state.auth.user);
+  
   const goIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {

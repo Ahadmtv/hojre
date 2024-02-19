@@ -16,6 +16,8 @@ const HeaderSecondry: FC = () => {
             break;
         case "cart": path[0] = "سبد خرید"
             break;
+        case "profile": path[0] = "حساب کاربری"
+            break;
         default:
             break;
     }

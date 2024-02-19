@@ -3,11 +3,14 @@ import Ratting from "../Ratting"
 import persian from "persianjs"
 import { Link } from "react-router-dom"
 import Tooltip from "../Tooltip"
-import { Iproduct } from "./CategoryAll"
 import { useGetProductsQuery } from "../../Redux/hojre"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { setFilterdPro } from "../../Redux/ProductsSlice"
-import { useAppDispatch } from "../../Redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
+import Loader from "../loader/Loader"
+import { setLoading } from "../../Redux/authSlice"
+import { doc, getDoc } from "firebase/firestore"
+import { db } from "../../firebase/Config"
 interface Idata {
     id: string
     category: string
@@ -28,12 +31,51 @@ const ProductCards: FC = () => {
     const lastIndex = productPerPage * currentPage;
     const firstIndex = lastIndex - productPerPage;
     const Dispatch = useAppDispatch();
+
+    //دریافت داده ها از فایل جیسون  داخلی 
+
     const { data, isLoading, error } = useGetProductsQuery("");
+
     useEffect(() => {
         if (data) {
             Dispatch(setFilterdPro(data));
         }
     }, [data])
+
+    // دیافت داده از فایر استور 
+
+    // const [userData, setUserData] = useState<any>();
+    // const dispath = useAppDispatch();
+    // const isLoading = useAppSelector((state) => state.auth.isLoading)
+    // useEffect(() => {
+    //     dispath(setLoading(true));
+    //     const docRef = doc(db, 'products', 'products');
+    //     getDoc(docRef)
+    //         .then((docSnap) => {
+    //             if (docSnap.exists()) {
+    //                 setUserData(docSnap.data());
+    //             } else {
+    //                 console.log('No such document!');
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error getting document:', error);
+    //         })
+    //         .finally(() => {
+    //             dispath(setLoading(false));
+    //         })
+    // }, []);
+    // useEffect(() => {
+    //     if (userData) {
+    //         const data: any[] = [];
+    //         Object.values(userData).forEach((value: any) => {
+    //             data.push(value);
+    //         })
+    //         Dispatch(setFilterdPro(data));
+    //     }
+    // }, [userData]);
+
+
     const [styleGrid, setStyleGrid] = useState<boolean>(true);
     const ahad = filterdPro.slice(firstIndex, lastIndex);
     // فانکشن های مربوط با اسلاید روی عکس محصولات
@@ -48,6 +90,7 @@ const ProductCards: FC = () => {
     }
     return (
         <div>
+            {isLoading && <Loader />}
             <div className="flex items-center py-4 px-2 mb-10 my-shadow">
                 <div>نمایش 12 محصول در صفحه</div>
                 <div className="mr-auto">

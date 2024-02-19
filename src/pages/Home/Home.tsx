@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import Banner from "../../components/home-sec/Banner"
 import CatHome from "../../components/home-sec/CatHome"
 import ProductHome from "../../components/home-sec/ProductHome"
@@ -9,19 +9,42 @@ import AplicationHome from "../../components/home-sec/AplicationHome"
 import BrandHome from "../../components/home-sec/BrandHome"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
+import { cartinfo } from "../../Redux/authSlice"
 const Home: FC = () => {
+
+  // تعداد محصول در سبد خرید کاربر
+
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector<any>((state) => state.auth.user);
+  let uid = ""
+  if (Object.keys(user).length !== 0) {
+    uid = user.uid;
+  }
+
+  useEffect(() => {
+    const addCart = async () => {
+      if (uid) {
+        await dispatch(cartinfo({ uid }));
+      }
+    }
+    addCart();
+  }, []);
+
+  
+  /////////////////////////////////////
   return (
     <div>
       <Navbar />
       <Banner />
-      <CatHome/>
-      <ProductHome/>
-      <RegisterHome/>
-      <MapHome/>
-      <AboutHome/>
-      <AplicationHome/>
-      <BrandHome/>
+      <CatHome />
+      <ProductHome />
+      <RegisterHome />
+      <MapHome />
+      <AboutHome />
+      <AplicationHome />
+      <BrandHome />
       <Footer />
 
     </div>

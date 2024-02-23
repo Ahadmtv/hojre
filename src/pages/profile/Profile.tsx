@@ -92,7 +92,7 @@ const Profile: FC = () => {
             {userData &&
                 <div>
                     <div className="container mx-auto flex justify-center">
-                        <div className="bg-gray-100 rounded-xl my-shadow -translate-y-44  w-full md:w-[70%] md:max-w-[700px]">
+                        <div className="bg-gray-100 rounded-xl my-shadow -translate-y-16 w-full md:w-[70%] md:max-w-[700px]">
                             <div className="flex justify-between bg-white my-shadow rounded-xl relative">
                                 <Link className="relative z-10 h-12 whitespace-nowrap flex justify-center items-center bg-white rounded-lg mr-3 mt-3 px-1 text-sm bg-opacity-50 hover:bg-opacity-100 ease-linear transition-all duration-150" to="/cart"><i className="fa-solid fa-bag-shopping px-2"></i>سبد خرید</Link>
                                 <div className="rounded-full relative z-10">

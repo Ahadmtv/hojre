@@ -92,12 +92,13 @@ const Profile: FC = () => {
             {userData &&
                 <div>
                     <div className="container mx-auto flex justify-center">
-                        <div className="bg-gray-100 rounded-xl my-shadow -translate-y-28  w-full md:w-[70%] md:max-w-[600px]">
+                        <div className="bg-gray-100 rounded-xl my-shadow -translate-y-44  w-full md:w-[70%] md:max-w-[700px]">
                             <div className="flex justify-between bg-white my-shadow rounded-xl relative">
                                 <Link className="relative z-10 h-12 whitespace-nowrap flex justify-center items-center bg-white rounded-lg mr-3 mt-3 px-1 text-sm bg-opacity-50 hover:bg-opacity-100 ease-linear transition-all duration-150" to="/cart"><i className="fa-solid fa-bag-shopping px-2"></i>سبد خرید</Link>
                                 <div className="rounded-full relative z-10">
                                     <div className="image-wrapper relative inline-block">
-                                        <img src={user.photoURL} alt="Your Image" className=" w-[150px] h-[150px] rounded-full" />
+                                        <img src={user.photoURL ? user.photoURL: window.location.origin +"/assets/images/clients/avater.png"} alt="محل عکس شما" className={` w-[150px] h-[150px] rounded-full  flex justify-center items-center ${user.photoURL? "":"bg-gray-400 bg-opacity-40 border-white border-[1px]"}`} />
+                                        {!user.photoURL && <div className="absolute bottom-0 right-1/2 rounded-full bg-gray-400 bg-opacity-40 flex justify-center items-center p-2 translate-x-1/2"><i className="fa-solid fa-plus text-white text-2xl"></i></div>}
                                         <label htmlFor="file-input" className="absolute text-xl top-0 left-0  cursor-pointer text-white w-full h-full bg-gray-700 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-100 ease-linear rounded-full bg-opacity-60">
                                             <i className="fa fa-upload text-white text-3xl"></i>
                                         </label>
@@ -115,7 +116,7 @@ const Profile: FC = () => {
                                     </div>
                                     <div className="flex w-full border-2 p-4 items-center rounded-md">
                                         <label>شماره همراه</label>
-                                        <input onChange={(e) => setPhoneNumber(e.target.value)} className={`mr-auto px-2 py-2  rounded-md border-gray-300 border-[1px] focus:outline-none ${editOn ? "bg-white" : "pointer-events-none bg-gray-100"}`} type="text" value={phoneNumber } readOnly={!editOn} />
+                                        <input onChange={(e) => setPhoneNumber(e.target.value)} className={`mr-auto px-2 py-2  rounded-md border-gray-300 border-[1px] focus:outline-none ${editOn ? "bg-white" : "pointer-events-none bg-gray-100"}`} type="text" value={phoneNumber} readOnly={!editOn} />
                                     </div>
                                     <div className="flex flex-col w-full gap-y-2 border-2 p-4 rounded-md">
                                         <label>آدرس</label>

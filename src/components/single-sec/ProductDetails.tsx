@@ -124,7 +124,7 @@ const ProductDetails: FC = () => {
                                 <Ratting /><span className="font-vazir-thin">{data.ratingsCount} نظر</span>
                             </div>
                             <div className="flex flex-col gap-y-3">
-                                <p className="text-2xl">{persian(data.price).englishNumber().toString()}تومان</p>
+                                <p className="text-2xl">{persian(data.price).englishNumber().toString()+",۰۰۰"}تومان</p>
                                 <p className="">{data.seller}</p>
                                 <p className="font-vazir-thin">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
                             </div>

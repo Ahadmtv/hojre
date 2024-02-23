@@ -43,19 +43,19 @@ const ReviewDescProduct: FC = () => {
                                 <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</li>
                             </ul>
                         </div>
-                        <div className="w-1/2 flex justify-center items-center"><img src={`${window.location.origin}/assets/images/shop/09.jpg`}></img></div>
+                        <div className="w-1/2 flex md:justify-center md:items-center"><img className="mb-auto px-2 md:px-0" src={`${window.location.origin}/assets/images/shop/09.jpg`}></img></div>
                     </div>
                 </div>}
                 {reviewShow && <div>
                     <div>
                         {data && data.map((r:Review, i:number) => {
                             return (
-                                <div key={i} className="flex items-center gap-y-2 border-b-2 py-2">
-                                    <div className="w-[10%] p-4"><div><img src={window.location.origin + r.imgUrl} alt={r.imgAlt}></img></div></div>
-                                    <div className="w-[90%] flex flex-col gap-1">
-                                        <div className="flex gap-x-6">
-                                            <div>{r.name}</div>
-                                            <div className="font-vazir-thin">{r.date}</div>
+                                <div key={i} className="flex gap-y-2 border-b-2 py-2">
+                                    <div className="w-[15%] md:w-[10%] h-full flex px-1 "><div><img src={window.location.origin + r.imgUrl} alt={r.imgAlt}></img></div></div>
+                                    <div className="w-[85%] md:w-[90%] flex flex-col gap-1">
+                                        <div className="flex gap-x-1 md:gap-x-3 lg:gap-x-5 xl:gap-x-6">
+                                            <div className="whitespace-nowrap">{r.name}</div>
+                                            <div className="font-vazir-thin text-sm">{r.date}</div>
                                             <Ratting />
                                         </div>
                                         <div className="font-vazir-thin pl-4">{r.desc}</div>

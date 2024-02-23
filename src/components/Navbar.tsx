@@ -69,13 +69,13 @@ const Navbar: FC = () => {
                                 <div className=" justify-center align-middle flex mx-4">
                                     <div className="flex justify-center items-center relative">
                                         <div className="cursor-pointer" onClick={() => setProfileSlide(!profileSlide)}>
-                                            <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.jpg"}`}></img></div>
+                                            <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`}></img></div>
                                             <div className="bg-red-600 p-2 rounded-full absolute left-0 text-sm w-1 h-1 flex justify-center items-center bottom-[6px] text-white">{cartNum === 0 ? "0" : persian(cartNum).englishNumber().toString()}</div>
                                         </div>
                                         <ul className={`${profileSlide ? "flex" : "hidden"} absolute bottom-[-120px] right-[10px] bg-white rounded-tl-lg flex-col w-[150px] border-2`}>
                                             <li className="border-b-2 
-                                        block px-3 py-2 hover:bg-gray-100 duration-100 ease-linear transition-all cursor-pointer"><Link className="flex gap-x-3" to="/profile"><i className="fa-solid fa-bag-shopping"></i><span className="text-sm whitespace-nowrap">پروفایل</span></Link></li>
-                                            <li className="border-b-2 block px-3 py-2 hover:bg-gray-100 duration-100 ease-linear transition-all cursor-pointer"><Link className="flex gap-x-3" to="/cart"><i className="fa-solid fa-user"></i><span className="text-sm whitespace-nowrap">سبد خرید</span></Link></li>
+                                        block px-3 py-2 hover:bg-gray-100 duration-100 ease-linear transition-all cursor-pointer"><Link className="flex gap-x-3" to="/profile"><i className="fa-solid fa-user"></i><span className="text-sm whitespace-nowrap">پروفایل</span></Link></li>
+                                            <li className="border-b-2 block px-3 py-2 hover:bg-gray-100 duration-100 ease-linear transition-all cursor-pointer"><Link className="flex gap-x-3" to="/cart"><i className="fa-solid fa-bag-shopping"></i><span className="text-sm whitespace-nowrap">سبد خرید</span></Link></li>
                                             <li className="border-b-2 block px-3 py-2 hover:bg-gray-100 duration-100 ease-linear transition-all cursor-pointer"><button onClick={(e) => handleExit(e)} className="flex gap-x-3"><i className="fa-solid fa-right-from-bracket"></i><span className="text-sm whitespace-nowrap">خروج</span></button></li>
                                         </ul>
                                     </div>
@@ -94,7 +94,7 @@ const Navbar: FC = () => {
                             <div className=" justify-center align-middle hidden md:flex mx-4">
                                 <div className="flex justify-center items-center relative">
                                     <div className="cursor-pointer" onClick={() => setProfileSlide(!profileSlide)}>
-                                        <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.jpg"}`}></img></div>
+                                        <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`}></img></div>
                                         <div className="bg-red-600 p-2 rounded-full absolute left-0 text-sm w-1 h-1 flex justify-center items-center bottom-[6px] text-white">{cartNum === 0 ? "0" : persian(cartNum).englishNumber().toString()}</div>
                                     </div>
                                     <ul className={`${profileSlide ? "flex" : "hidden"} absolute bottom-[-120px] right-[10px] bg-white rounded-tl-lg flex-col w-[150px] border-2`}>
@@ -116,7 +116,7 @@ const Navbar: FC = () => {
                             </ul>
                         </div>
                         <div className="mr-auto">
-                            <Link to="/"><img src={`${window.location.origin}/assets/images/logo/logo.png`}></img></Link>
+                            <Link to="/"><img className="max-w-[200px]" src={`${window.location.origin}/assets/images/logo/logo.png`}></img></Link>
                         </div>
                     </div>
                     <div >

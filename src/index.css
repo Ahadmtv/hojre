@@ -253,7 +253,13 @@
 
 .Toastify__toast-body {
     font-family: 'vazir', sans-serif; 
-    font-size: 15px;
+    font-size: 12px;
     direction: rtl;
+  }
+  .Toastify__toast-container{
+max-width: 230px;
+  }
+  .Toastify__toast{
+    display: inline-block;
   }
 /* //////////////////////////////////// */

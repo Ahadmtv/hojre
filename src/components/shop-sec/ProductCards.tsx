@@ -62,7 +62,7 @@ const ProductCards: FC = () => {
             <div className="flex items-center py-4 px-2 mb-10 my-shadow">
                 <div>نمایش 12 محصول در صفحه</div>
                 <div className="mr-auto">
-                    <span className="p-2 cursor-pointer" onClick={() => setStyleGrid(true)}><i className="fa-light fa-table-cells"></i></span>
+                    <span className="p-2 cursor-pointer" onClick={() => setStyleGrid(true)}><i className="fa-solid fa-pager"></i></span>
                     <span className="p-2 cursor-pointer" onClick={() => setStyleGrid(false)}><i className="fa-solid fa-list-ul"></i></span>
                 </div>
             </div>
@@ -82,7 +82,7 @@ const ProductCards: FC = () => {
                                 <div className={`flex justify-center flex-col ${styleGrid ? "items-center gap-2 mt-2" : "gap-4 mr-10"}`}>
                                     <div className="text-center"><Link to={`/shop/${pro.id}`}>{pro.name}</Link></div>
                                     <div className="text-amber-300"><Ratting /></div>
-                                    <div>{persian(pro.price).englishNumber().toString()}تومان</div>
+                                    <div>{persian(pro.price).englishNumber().toString()+",۰۰۰"}تومان</div>
                                 </div>
                             </div>
                         </div>

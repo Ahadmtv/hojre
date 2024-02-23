@@ -11,7 +11,6 @@ import Loader from '../../components/loader/Loader'
 import { toast } from 'react-toastify'
 import persian from "persianjs"
 
-
 // بررسی کاربران فعال در حال حاضر سایت و دریافت اطلاعات آن
 
 const CardPage: FC = () => {
@@ -103,36 +102,36 @@ const CardPage: FC = () => {
             <Navbar />
             <HeaderSecondry />
             <div>
-                <div className='container mx-auto'>
-                    <div className='my-6 my-shadow'>
-                        <table className="w-full">
+                <div className='container mx-auto px-1'>
+                    <div className='my-6 my-shadow overflow-x-scroll'>
+                        <table className="w-full border-separate text-[14px] md:text-[16px]">
                             <thead className='bg-amber-600 text-white py-3 px-2'>
                                 <tr className='text-right'>
                                     <th className='py-3 pr-3'>نام محصول</th>
-                                    <th className='py-3 text-center'>قیمت</th>
-                                    <th className='py-3 text-center'>تعداد</th>
-                                    <th className='py-3 text-center'>رنگ</th>
-                                    <th className='py-3 text-center'>کل</th>
-                                    <th className='py-3 text-center'>حذف سفارش</th>
+                                    <th className='py-3 text-center px-1'>قیمت</th>
+                                    <th className='py-3 text-center px-1'>تعداد</th>
+                                    <th className='py-3 text-center px-1'>رنگ</th>
+                                    <th className='py-3 text-center px-1'>کل</th>
+                                    <th className='py-3 text-center px-1'>حذف سفارش</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {cartProducts && cartProducts.map((p, i) => {
                                     return (
-                                        <tr key={i} className='h-[100px] border-gray-300 border-b-2 '>
+                                        <tr key={i} className='h-[100px] border-gray-300 border-b-2'>
                                             <td className='bg-gray-200 pr-3'>
-                                                <div className='flex gap-x-4 items-center'>
-                                                    <img className='w-[100px] py-2' src={p.image}></img>
-                                                    <span>{p.name}</span>
+                                                <div className='flex gap-x-4 items-center flex-col md:flex-row'>
+                                                    <img className='md:w-[100px] w-[65px] py-2' src={p.image}></img>
+                                                    <span className='text-center md:text-right'>{p.name}</span>
                                                 </div>
                                             </td>
-                                            <td className='bg-gray-200 text-center'><div>{persian(p.price).englishNumber().toString() + "تومان"}</div></td>
-                                            <td className='bg-gray-200 text-center'>
+                                            <td className='bg-gray-200 text-center px-1'><div>{persian(p.price).englishNumber().toString()+",۰۰۰" + "تومان"}</div></td>
+                                            <td className='bg-gray-200 text-center px-1'>
                                                 <div>{persian(p.quantity).englishNumber().toString()}</div>
                                             </td>
-                                            <td className='bg-gray-200 text-center'>{p.color}</td>
-                                            <td className='bg-gray-200 text-center'><div>{persian(p.quantity * p.price).englishNumber().toString() + "تومان"}</div></td>
-                                            <td className='bg-gray-200 text-center'>
+                                            <td className='bg-gray-200 text-center px-1'>{p.color}</td>
+                                            <td className='bg-gray-200 text-center px-1'><div>{persian(p.quantity * p.price).englishNumber().toString()+",۰۰۰" + "تومان"}</div></td>
+                                            <td className='bg-gray-200 text-center px-1'>
                                                 <button onClick={(e) => deleteProduct(e, p.id)} className='p-2 hover:text-red-600 transition duration-200 ease-linear'><i className="text-xl fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>

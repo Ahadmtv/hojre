@@ -18,7 +18,12 @@ const Shop = () => {
         <div>
           <div className="container mx-auto">
             <div className="flex flex-col-reverse lg:flex-row my-16 gap-x-6">
-              <div className="w-full lg:w-[65%]"><ProductCards /></div>
+              <div className="w-full lg:w-[65%]">
+                <ProductCards />
+                <div className="lg:hidden">
+                  {filterdPro.length > productPerPage && <Pagination />}
+                </div>
+              </div>
               <div className="w-full lg:w-[35%]">
                 <SearchShop />
                 <CategoryAll />
@@ -28,11 +33,13 @@ const Shop = () => {
                 </div>
               </div>
             </div>
-            <div className="flex lg:hidden flex-col md:flex-row gap-5">
+            <div className="flex lg:hidden flex-col md:flex-row gap-5 mb-4">
               <PopularPosts />
               <PopularTags />
             </div>
-            {filterdPro.length > productPerPage && <Pagination />}
+            <div className="hidden lg:block">
+              {filterdPro.length > productPerPage && <Pagination />}
+            </div>
           </div>
         </div>
       }

@@ -100,9 +100,9 @@ const ProductHome: FC = () => {
             <div><img className=" z-0 absolute top-1/2 right-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/02.png"></img></div>
             <div className="container mx-auto z-10 px-4 md:px-0">
                 <div className="bg-white flex items-center py-6 px-5 shadow-lg rounded">
-                    <div><h1 className="text-2xl font-vazir-bold font-bold">محصولات ما</h1></div>
+                    <div><h1 className="text-2xl font-vazir-bold font-bold whitespace-nowrap">محصولات ما</h1></div>
                     <div className="mr-auto">
-                        <ul className="flex justify-start items-center">
+                        <ul className="flex justify-start items-center flex-wrap">
                             <li className="px-4 py-2 rounded-md cursor-pointer hover:bg-amber-300 duration-300 ease-linear transition font-vazir-thin" onClick={() => handleFilter("همه")}>همه</li>
                             <li className="px-4 py-2 rounded-md cursor-pointer hover:bg-amber-300 duration-300 ease-linear transition font-vazir-thin" onClick={() => handleFilter("کفش")}>کفش</li>
                             <li className="px-4 py-2 rounded-md cursor-pointer hover:bg-amber-300 duration-300 ease-linear transition font-vazir-thin" onClick={() => handleFilter("کیف")}>کیف</li>

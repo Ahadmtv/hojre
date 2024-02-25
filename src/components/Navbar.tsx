@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from "react"
+import { FC, MouseEvent, useEffect, useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import persian from "persianjs"
@@ -11,19 +11,31 @@ import Loader from "./loader/Loader";
 
 
 const Navbar: FC = () => {
+    const user: any = useAppSelector((state) => state.auth.user);
     const productCart = useAppSelector((state) => state.auth.productCart);
-    const cartNum = Object.keys(productCart).length;
+    console.log(productCart)
+    // const cartNum = Object.keys(productCart).length;
+    const [cartNum, setCartNum] = useState<number>(0);
     const [profileSlide, setProfileSlide] = useState<boolean>(false);
     const [menuToggle, setMenuToggle] = useState<boolean>(false);
     const [authToggle, setAuthToggle] = useState<boolean>(false);
-    const user: any = useAppSelector((state) => state.auth.user);
-    const isLoading=useAppSelector((state)=>state.auth.isLoading);
+    const isLoading = useAppSelector((state) => state.auth.isLoading);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     let uid: string = "";
     if (Object.keys(user).length !== 0) {
         uid = user.uid
     }
+    useEffect(() => {
+            if (Object.keys(productCart)) {
+                setCartNum(Object.keys(productCart).length);
+                console.log(true);
+            } else {
+                setCartNum(0);
+                console.log(false);
+            }
+    }, [productCart]);
+
 
     // const {userData, isLoading, hasError}=GetUserData(uid);
     const showMenu = () => {
@@ -49,7 +61,7 @@ const Navbar: FC = () => {
     }
     return (
         <>
-        {isLoading && <Loader/>}
+            {isLoading && <Loader />}
             <header className=" w-full fixed backdrop-blur-2xl z-30 bg-white bg-opacity-40">
                 <div className="container mx-auto bg-transparent">
                     {Object.keys(user).length === 0 &&

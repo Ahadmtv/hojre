@@ -11,12 +11,11 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { setLoading, setUser } from "../../Redux/authSlice";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-import { expandTagDescription } from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 
 const Profile: FC = () => {
     const [editOn, setEditOn] = useState<boolean>(false);
 
-    const user: any = useAppSelector((state) => state.auth.user);
+    const user:any= useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
     const uid = user.uid;
     const { userData, isLoading, hasError } = GetUserData(uid);
@@ -24,11 +23,17 @@ const Profile: FC = () => {
     const navigate = useNavigate();
     const types = ["image/png", "image/jpg", "image/jpeg"];
     // تعریف استیت های فرم اطلاعات فردی
-    const [fullName, setFullName] = useState<string>(user.displayName);
-    const [phoneNumber, setPhoneNumber] = useState<string>(user.phoneNumber);
-    const [address, setAddress] = useState<string>(user.address);
-    const [addressCode, setAddressCode] = useState<string>(user.addressCode);
+    const [fullName, setFullName] = useState<string>("");
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
+    const [address, setAddress] = useState<string>("");
+    const [addressCode, setAddressCode] = useState<string>("");
     /////////////////////////////////////
+    useEffect(()=>{
+        setFullName(user.displayName);
+        setPhoneNumber(user.phoneNumber);
+        setAddress(user.address);
+        setAddressCode(user.addressCode);
+    },[user])
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         let selected: any = e.target.files;
         if (selected.length === 1 && types.includes(selected[0].type)) {
@@ -84,6 +89,7 @@ const Profile: FC = () => {
         setEditOn(false);
         dispatch(setLoading(false));
     }
+    console.log(user);
     return (
         <>
             <Navbar />

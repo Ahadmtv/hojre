@@ -13,14 +13,14 @@ import ScrollTop from './components/ScrollTop';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from './firebase/Config';
+import { Auth, db } from './firebase/Config';
 import { useAppDispatch, useAppSelector } from './Redux/hooks';
-import { cartinfo, setLoading } from './Redux/authSlice';
+import { cartinfo, setLoading, setUser } from './Redux/authSlice';
 import Profile from './pages/profile/Profile';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const App: FC = () => {
-
-
+  const user = useAppSelector(state => state.auth.user);
   // import data from json server to the firestore
 
   // useEffect(() => {
@@ -35,19 +35,32 @@ const App: FC = () => {
   // }, [])
 
   //  
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    onAuthStateChanged(Auth, (user) => {
+      if (user) {
+        const uid=user.providerData[0].uid;
+        const ref = doc(db, "users", uid);
+        getDoc(ref).then((document: any) => {
+          dispatch(setUser(document.data()));
+        })
+      }
+    });
+  }, []);
   return (
     <>
       <ToastContainer
-      position="top-right"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="colored"
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
       />
       <main className="App overflow-x-hidden">
         <BrowserRouter>
@@ -63,7 +76,7 @@ const App: FC = () => {
             <Route path='/blogs' element={<Blog />} />
             <Route path='/shop/:id' element={<SingleProduct />} />
             <Route path='/cart' element={<Privet><CardPage /></Privet>} />
-            <Route path='/profile' element={<Privet><Profile/></Privet>} />
+            <Route path='/profile' element={<Privet><Profile /></Privet>} />
             <Route path='/blogs/:id' element={<SingleBlog />} />
           </Routes>
         </BrowserRouter>

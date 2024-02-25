@@ -22,7 +22,6 @@ const GetUserData = ( uid:string ):any => {
 
                 setIsLoading(false);
             } catch (error) {
-                console.error('An error occurred while fetching the user document: ', error);
                 setIsLoading(false);
                 setHasError(true);
             }

@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { browserLocalPersistence, getAuth, setPersistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -18,6 +18,20 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // Initialize Auth
 export const Auth = getAuth(app);
+
+
+// setPersistence(Auth, browserLocalPersistence)
+//   .then(() => {
+//     // Existing and future Auth states are now persisted in the current
+//     // session only. Closing the window would clear any existing state
+//     // even if a user forgets to sign out.
+//     // ...
+//     // New sign-in will be persisted with session persistence.
+//   })
+//   .catch((error) => {
+//     // Handle Errors here.
+
+//   });
 // Initialize firestore
 
 export const db = getFirestore(app);

@@ -103,25 +103,6 @@ const Footer: FC = () => {
             link: '#',
         },
     ]
-
-    const footerbottomList = [
-        {
-            text: 'مجمع',
-            link: '#',
-        },
-        {
-            text: 'کارکنان',
-            link: '#',
-        },
-        {
-            text: 'دانشجویان',
-            link: '#',
-        },
-        {
-            text: 'فارغ التحصیل',
-            link: '#',
-        },
-    ]
     return (
         <footer>
             <div className='footer-top bg-black text-white py-10'>

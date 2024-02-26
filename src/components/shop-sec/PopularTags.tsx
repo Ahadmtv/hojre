@@ -8,6 +8,8 @@ interface topTag{
     text: string
 }
 const PopularTags: FC = () => {
+
+    //هوک دریافت اطلاعات از دیتابیس
     const {data}=GetFirestore("topTags");
     return (
         <div className="my-shadow md:w-1/2 lg:w-auto bg-white">

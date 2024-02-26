@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { useGetCatHomeQuery } from "../../Redux/hojre"
 import Loader from "../loader/Loader"
 import GetFirestore from "../../hooks/GetFirestore"
 import { useAppSelector } from "../../Redux/hooks"
@@ -12,6 +11,8 @@ interface catHome{
 }
 const CatHome:FC = () => {
     const isLoading=useAppSelector((state)=>state.auth.isLoading);
+
+    //هوک دریافت اطلاعات از دیتابیس
     const {data}=GetFirestore("catHome");
     return (
         <div>

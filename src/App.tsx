@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home, Shop, Blog, About, Contact } from "./pages/index"
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import SingleProduct from './pages/single-product/singleProduct';
 import CardPage from './pages/card/CardPage';
 import SingleBlog from './pages/single-blog/SingleBlog';
@@ -10,33 +10,19 @@ import SignUp from './pages/auth/SignUp';
 import ResetPass from './pages/auth/ResetPass';
 import Privet from './pages/privet-route/Privet';
 import ScrollTop from './components/ScrollTop';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc} from 'firebase/firestore';
 import { Auth, db } from './firebase/Config';
-import { useAppDispatch, useAppSelector } from './Redux/hooks';
-import { cartinfo, setLoading, setUser } from './Redux/authSlice';
+import { useAppDispatch } from './Redux/hooks';
+import { setUser } from './Redux/authSlice';
 import Profile from './pages/profile/Profile';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const App: FC = () => {
-  const user = useAppSelector(state => state.auth.user);
-  // import data from json server to the firestore
-
-  // useEffect(() => {
-  //   const ahad = async () => {
-  //     const response = await fetch('http://localhost:3000/topTags');
-  //     const data = await response.json();
-  //     await setDoc(doc(db, "topTags","topTags"), {
-  //       ...data
-  //     });
-  //   }
-  //   ahad()
-  // }, [])
-
-  //  
-
   const dispatch = useAppDispatch();
+
+  //بررسی وضعیت کاربر های فعال و دیافت اطلاعات آن ها
   useEffect(() => {
     onAuthStateChanged(Auth, (user) => {
       if (user) {
@@ -47,9 +33,11 @@ const App: FC = () => {
         })
       }
     });
-  }, []);
+  }, [dispatch]);
   return (
     <>
+
+    {/* شخصی سازی پیام های هشدار سایت */}
       <ToastContainer
         position="top-right"
         autoClose={3000}

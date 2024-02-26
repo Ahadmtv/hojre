@@ -1,6 +1,5 @@
 import { FC, MouseEvent, useState } from "react"
 import Ratting from "../../components/Ratting";
-import { useGetProductReviewQuery } from "../../Redux/hojre";
 import GetFirestore from "../../hooks/GetFirestore";
 
 interface Review {
@@ -12,6 +11,8 @@ interface Review {
 }
 
 const ReviewDescProduct: FC = () => {
+
+    //هوک دریافت اطلاعات از دیتابیس
     const {data}=GetFirestore("productReview")
     const [reviewShow, setReviewShow] = useState<boolean>(false);
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -43,7 +44,7 @@ const ReviewDescProduct: FC = () => {
                                 <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</li>
                             </ul>
                         </div>
-                        <div className="w-1/2 flex md:justify-center md:items-center"><img className="mb-auto px-2 md:px-0" src={`${window.location.origin}/assets/images/shop/09.jpg`}></img></div>
+                        <div className="w-1/2 flex md:justify-center md:items-center"><img className="mb-auto px-2 md:px-0" src={`${window.location.origin}/assets/images/shop/09.jpg`} alt="محصول"></img></div>
                     </div>
                 </div>}
                 {reviewShow && <div>

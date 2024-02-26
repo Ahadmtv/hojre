@@ -5,7 +5,11 @@ import { useAppSelector } from "../../Redux/hooks";
 import Loader from "../../components/loader/Loader";
 const BlogDetails: FC = () => {
     const isLoading = useAppSelector((state) => state.auth.isLoading);
+
+    //دریافت آیدی محصول از آدرس صفحه
     const { id } = useParams();
+
+    //دریافت اطلاعات محصول با استفاده از آیدی 
     const { data } = GetFirestore("blogs", id);
 
     return (
@@ -13,7 +17,7 @@ const BlogDetails: FC = () => {
             {isLoading && <Loader />}
             {data &&
                 <div className="bg-white rounded-md my-shadow p-6">
-                    <div><img className="w-full" src={window.location.origin + data.imgUrl}></img></div>
+                    <div><img className="w-full" src={window.location.origin + data.imgUrl} alt="عکس مطلب"></img></div>
                     <div className="flex flex-col gap-y-4 mt-4">
                         <div><h2 className="text-3xl">{data.title}</h2></div>
                         <div className="flex gap-x-5">
@@ -24,7 +28,7 @@ const BlogDetails: FC = () => {
                         <div><p className="font-vazir-thin">{data.desc}</p></div>
                         <div className="">نقل قول</div>
                         <div>پارگراف دوم </div>
-                        <div><img></img></div>
+                        <div><img alt="عکس مطلب"></img></div>
                         <div>پارگراف سوم </div>
                         <div>تگ ها و شبکه های اجتماعی</div>
                     </div>

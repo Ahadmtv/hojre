@@ -4,7 +4,11 @@ import Breadcrumb from "./Breadcrumb";
 
 const HeaderSecondry: FC = () => {
     let location = useLocation();
+
+    //هرصفحه به صورت یک عضو از آرایه ذخیره می شود
     const path = decodeURIComponent(location.pathname).split('/').filter((p) => p !== "");
+
+    //فارسی سازی آدرس برای نشان دادن ردپای کاربر
     switch (path[0]) {
         case "shop": path[0] = "فروشگاه"
             break;

@@ -21,6 +21,8 @@ const UseStorage = (file: any, uid: string) => {
 
                 },
                 async () => {
+
+                    //دریافت آدرس فایل آپلود شده
                     const downloadURL = await getDownloadURL(avatarRef);
                     setUrl(downloadURL);
                     dispatch(setLoading(false));
@@ -28,7 +30,7 @@ const UseStorage = (file: any, uid: string) => {
             )
         }
 
-    }, [file, uid]);
+    }, [file, uid,dispatch]);
     return { url };
 }
 

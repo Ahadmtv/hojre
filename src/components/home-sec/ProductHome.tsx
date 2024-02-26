@@ -85,6 +85,8 @@ const ProductHome: FC = () => {
           id: 8,
         },
       ]
+
+      // فیلتر شدن بر حسب دسته بندی محصولات
     const [products, setProducts] = useState<Iproducts[]>(ProductData);
     const handleFilter = (filtername: string): void => {
         if (filtername === "همه") {
@@ -96,8 +98,8 @@ const ProductHome: FC = () => {
     }
     return (
         <div className="background-product relative pt-16 pb-16">
-            <div><img className=" z-0 absolute top-1/2 left-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/01.png"></img></div>
-            <div><img className=" z-0 absolute top-1/2 right-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/02.png"></img></div>
+            <div><img className=" z-0 absolute top-1/2 left-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/01.png" alt="background"></img></div>
+            <div><img className=" z-0 absolute top-1/2 right-0 -translate-y-1/2 shap-animation" src="./assets/images/shape-img/icon/02.png" alt="background"></img></div>
             <div className="container mx-auto z-10 px-4 md:px-0">
                 <div className="bg-white flex items-center py-6 px-5 shadow-lg rounded">
                     <div><h1 className="text-2xl font-vazir-bold font-bold whitespace-nowrap">محصولات ما</h1></div>
@@ -116,7 +118,7 @@ const ProductHome: FC = () => {
                         return (
                             <div key={pro.id} className="shadow-lg bg-white z-10 rounded">
                                 <div className="relative">
-                                    <div className="flex justify-center"><img className="w-full h-full" src={pro.imgUrl}></img></div>
+                                    <div className="flex justify-center"><img className="w-full h-full" src={pro.imgUrl} alt={pro.title}></img></div>
                                     <div className="flex absolute bottom-0 w-full bg-amber-300 bg-opacity-80 px-4 py-1">
                                         <div className="font-vazir-thin">{pro.cate}</div>
                                         <div className="mr-auto"><Ratting/></div>

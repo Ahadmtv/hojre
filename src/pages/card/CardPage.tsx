@@ -27,7 +27,7 @@ const CardPage: FC = () => {
             }
         });
     }, []);
-    ////////////////////////////////////////////////////
+
 
     // دریافت اطلاعات حساب کاربر مورد نظر /////////
 
@@ -49,9 +49,8 @@ const CardPage: FC = () => {
                 });
         }
 
-    }, [uid, deleteProducts]);
+    }, [uid, deleteProducts,dispatch]);
 
-    ////////////////////////////////
 
     //به دست آوردن محصولات سبد خرید کاربر
 
@@ -60,11 +59,11 @@ const CardPage: FC = () => {
             setCartProducts(userData.userCartProduct);
             dispatch(setLoading(false));
         }
-    }, [userData]);
+    }, [userData,dispatch]);
 
-    /////////////////////////////////////////////////////////////
 
-    // حذف محصول مورد نظر بعد از کلیک //////
+
+    // حذف محصول مورد نظر بعد از کلیک 
 
 
     const deleteProduct = async (e: MouseEvent<HTMLButtonElement>, id: any) => {
@@ -92,10 +91,10 @@ const CardPage: FC = () => {
             };
             removeProduct();
         }
-    }, [deleteProducts]);
+    }, [deleteProducts,dispatch,uid]);
 
 
-    //////////////////////////////////////////////////////
+
     return (
         <div>
             {isLoading && <Loader />}
@@ -121,7 +120,7 @@ const CardPage: FC = () => {
                                         <tr key={i} className='h-[100px] border-gray-300 border-b-2'>
                                             <td className='bg-gray-200 pr-3'>
                                                 <div className='flex gap-x-4 items-center flex-col md:flex-row'>
-                                                    <img className='md:w-[100px] w-[65px] py-2' src={p.image}></img>
+                                                    <img className='md:w-[100px] w-[65px] py-2' src={p.image} alt='image'></img>
                                                     <span className='text-center md:text-right'>{p.name}</span>
                                                 </div>
                                             </td>
@@ -144,7 +143,6 @@ const CardPage: FC = () => {
                 </div>
             </div>
             <Footer />
-
         </div>
     )
 }

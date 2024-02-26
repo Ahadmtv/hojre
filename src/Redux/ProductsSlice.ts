@@ -12,6 +12,7 @@ const initialState: Istate = {
     productPerPage: 12
 }
 
+// اسلایس برای صفحه بندی مناسب محصولات
 export const ProductSlice = createSlice({
     name: "product",
     initialState,

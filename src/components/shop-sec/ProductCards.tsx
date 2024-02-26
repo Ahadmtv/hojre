@@ -3,29 +3,11 @@ import Ratting from "../Ratting"
 import persian from "persianjs"
 import { Link } from "react-router-dom"
 import Tooltip from "../Tooltip"
-import { useGetProductsQuery } from "../../Redux/hojre"
 import { useSelector } from "react-redux"
 import { setFilterdPro } from "../../Redux/ProductsSlice"
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import Loader from "../loader/Loader"
-import { setLoading } from "../../Redux/authSlice"
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "../../firebase/Config"
 import GetFirestore from "../../hooks/GetFirestore"
-interface Idata {
-    id: string
-    category: string
-    name: string
-    seller: string
-    price: number
-    stock: number
-    ratings: number
-    ratingsCount: number
-    img: string
-    shipping: number
-    quantity: number
-}
-
 
 const ProductCards: FC = () => {
     const { filterdPro, currentPage, productPerPage } = useSelector((state: any) => state.products);
@@ -41,9 +23,8 @@ const ProductCards: FC = () => {
         if (data) {
             Dispatch(setFilterdPro(data));
         }
-    }, [data]);
+    }, [data,Dispatch]);
 
-//////////////////////////////////////////
     const [styleGrid, setStyleGrid] = useState<boolean>(true);
     const ahad = filterdPro.slice(firstIndex, lastIndex);
     // فانکشن های مربوط با اسلاید روی عکس محصولات
@@ -72,7 +53,7 @@ const ProductCards: FC = () => {
                         <div className="my-shadow p-2" key={pro.id}>
                             <div className={styleGrid ? "" : "flex"}>
                                 <div onMouseOver={(e) => hover(e)} onMouseOut={(e) => unhover(e)} className={`relative overflow-hidden ${styleGrid ? "" : "max-w-[250px]"}`}>
-                                    <img src={pro.img}></img>
+                                    <img src={pro.img} alt={pro.id}></img>
                                     <div className="product-slide ">
                                         <Tooltip content="مشاهده"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to={`/shop/${pro.id}`}><i className="text-white fa-solid fa-eye"></i></Link></Tooltip>
                                         <Tooltip content="پسندیدن"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to="/"><i className="text-white fa-solid fa-heart"></i></Link></Tooltip>

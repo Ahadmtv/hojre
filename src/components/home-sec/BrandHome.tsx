@@ -1,22 +1,25 @@
 import { FC } from "react"
-// Import Swiper React components
+
+// استفاده از swiper-react
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+//اضافه کردن فایل استایل swiper-react
 import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
-import { useGetSponsorListQuery } from "../../Redux/hojre";
 import GetFirestore from "../../hooks/GetFirestore";
 interface sponsor {
     imgUrl: string
 }
 
 const BrandHome: FC = () => {
-    // const { data, isLoading, error } = useGetSponsorListQuery("");
+
+    //هوک دریافت اطلاعات  از دیتابیس
     const {data}=GetFirestore("sponsorList");
     return (
         <div className="py-10 bg-gray-100">
             <div className="container mx-auto">
+
+                {/* شخصی سازی اسلایدر */}
                 <Swiper
                     slidesPerView={2}
                     spaceBetween={10}
@@ -48,7 +51,7 @@ const BrandHome: FC = () => {
                 >
                     {data && data.map((sponsor: sponsor, i: number) => {
                         return (
-                            <SwiperSlide className="" key={i}><img className="mx-auto" src={sponsor.imgUrl}></img></SwiperSlide>
+                            <SwiperSlide className="" key={i}><img className="mx-auto" src={sponsor.imgUrl} alt="اسپانسر"></img></SwiperSlide>
                         )
                     })}
                 </Swiper>

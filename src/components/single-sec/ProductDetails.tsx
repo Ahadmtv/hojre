@@ -1,9 +1,7 @@
-import { FC, MouseEvent, useEffect, useState } from "react"
-import { Iproduct } from "../shop-sec/CategoryAll"
+import { FC, MouseEvent, useState } from "react"
 import Ratting from "../Ratting"
 import Quantity from "./Quantity"
 import persian from "persianjs"
-import { useGetSingleProductQuery } from "../../Redux/hojre"
 import { useNavigate, useParams } from "react-router-dom"
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { Auth, db } from "../../firebase/Config"
@@ -14,13 +12,9 @@ import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import { cartinfo, setLoading } from "../../Redux/authSlice"
 import GetFirestore from "../../hooks/GetFirestore"
 
-interface Iprops {
-    product: Iproduct[]
-}
 const ProductDetails: FC = () => {
     const { id } = useParams<(string)>();
     const isLoading = useAppSelector((state) => state.auth.isLoading);
-    const isLoadingB = useAppSelector((state) => state.auth.isLoading);
     const dispatch = useAppDispatch();
     const {data} = GetFirestore("products",id);
     const navigate = useNavigate();
@@ -32,6 +26,7 @@ const ProductDetails: FC = () => {
     let uid: string = ""
     let userData: any
 
+    // بررسی وضعیت کاربر و دریافت اطلاعات کاربر بر اساس آیدی 
     onAuthStateChanged(Auth, (user) => {
         if (user) {
             uid = user.providerData[0].uid;
@@ -77,7 +72,9 @@ const ProductDetails: FC = () => {
                 });
                 toast.success("به سبد خرید اضافه شد");
                 dispatch(setLoading(false));
+
                 //آپدیت تعداد محصولات سبد خرید
+
                 await dispatch(cartinfo({ uid }));
             } else {
                 await updateDoc(userRef, {
@@ -104,14 +101,13 @@ const ProductDetails: FC = () => {
 
 
     }
-    // تابع نشان دادن صورت حساب
+    // تابع نمایش  صورت حساب
     const handleCheck = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
     }
     return (
         <div className="my-shadow p-4 rounded-md">
             {isLoading && <Loader />}
-            {isLoadingB && <Loader />}
             {data &&
                 <div className="flex flex-col md:flex-row">
                     <div className="iamge w-full md:w-1/2">

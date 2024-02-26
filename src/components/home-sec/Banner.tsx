@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react"
 import SelectCat from "../SelectCat";
 import { Link } from "react-router-dom";
-import { useGetProductsQuery } from "../../Redux/hojre";
 import GetFirestore from "../../hooks/GetFirestore";
 
 interface Iproduct {
@@ -22,6 +21,8 @@ const Banner: FC = () => {
     const {data}=GetFirestore("products");
     const [searchValue, setSearchValue] = useState<string>("");
     const [filterd, setFilterd] = useState<Iproduct[]>([]);
+
+    //نمایش نتایج جستجو 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const searchTerm = e.target.value;
         setSearchValue(searchTerm);
@@ -32,6 +33,8 @@ const Banner: FC = () => {
         }
 
     }
+
+    // درصورت نیاز تابع سرچ دستی
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
 
     }

@@ -11,10 +11,8 @@ import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import { cartinfo } from "../../Redux/authSlice"
+import Loader from "../../components/loader/Loader"
 const Home: FC = () => {
-
-  // تعداد محصول در سبد خرید کاربر
-
 
   const dispatch = useAppDispatch();
   const user = useAppSelector<any>((state) => state.auth.user);
@@ -22,7 +20,8 @@ const Home: FC = () => {
   if (Object.keys(user).length !== 0) {
     uid = user.uid;
   }
-
+  const isLoading = useAppSelector(state => state.auth.isLoading);
+  //دریافت محصولات  سبد خرید کاربر و ذخیره آن در متعیر cartProduct در REDUX
   useEffect(() => {
     const addCart = async () => {
       if (uid) {
@@ -30,12 +29,12 @@ const Home: FC = () => {
       }
     }
     addCart();
-  }, []);
+  });
 
-  
-  /////////////////////////////////////
+
   return (
     <div>
+      {isLoading && <Loader/>}
       <Navbar />
       <Banner />
       <CatHome />
@@ -46,7 +45,6 @@ const Home: FC = () => {
       <AplicationHome />
       <BrandHome />
       <Footer />
-
     </div>
   )
 }

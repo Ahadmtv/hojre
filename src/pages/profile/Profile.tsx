@@ -13,27 +13,32 @@ import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 
 const Profile: FC = () => {
+    // فعال یا غیرفعال بودن حالت ویرایش فرم
     const [editOn, setEditOn] = useState<boolean>(false);
 
     const user:any= useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
     const uid = user.uid;
-    const { userData, isLoading, hasError } = GetUserData(uid);
+    const { userData, isLoading } = GetUserData(uid);
     const [file, setFile] = useState<any>(null);
     const navigate = useNavigate();
     const types = ["image/png", "image/jpg", "image/jpeg"];
+
     // تعریف استیت های فرم اطلاعات فردی
     const [fullName, setFullName] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [address, setAddress] = useState<string>("");
     const [addressCode, setAddressCode] = useState<string>("");
-    /////////////////////////////////////
+
+    //آپدیت استیت ها با تغییر کاربر
     useEffect(()=>{
         setFullName(user.displayName);
         setPhoneNumber(user.phoneNumber);
         setAddress(user.address);
         setAddressCode(user.addressCode);
     },[user])
+
+    // آغاز فرایند آپلود عکس کاربر و ثبت آدرس عکس در دیتابیس
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         let selected: any = e.target.files;
         if (selected.length === 1 && types.includes(selected[0].type)) {
@@ -58,7 +63,9 @@ const Profile: FC = () => {
             }
         }
         update();
-    }, [url]);
+    }, [url,dispatch,uid]);
+
+    //تابع خروج کاربر از وضعیت  وارد شده
     const handleExit = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         navigate("/");
@@ -74,6 +81,8 @@ const Profile: FC = () => {
                 dispatch(setLoading(false));
             })
     }
+
+    //تابع ثبت تغییرات اطلاعات فردی کاربر
     const handleSave = async (e: MouseEvent<HTMLButtonElement>) => {
         dispatch(setLoading(true));
         e.preventDefault();
@@ -89,7 +98,6 @@ const Profile: FC = () => {
         setEditOn(false);
         dispatch(setLoading(false));
     }
-    console.log(user);
     return (
         <>
             <Navbar />
@@ -103,7 +111,7 @@ const Profile: FC = () => {
                                 <Link className="relative z-10 h-12 whitespace-nowrap flex justify-center items-center bg-white rounded-lg mr-3 mt-3 px-1 text-sm bg-opacity-50 hover:bg-opacity-100 ease-linear transition-all duration-150" to="/cart"><i className="fa-solid fa-bag-shopping px-2"></i>سبد خرید</Link>
                                 <div className="rounded-full relative z-10">
                                     <div className="image-wrapper relative inline-block">
-                                        <img src={user.photoURL ? user.photoURL: window.location.origin +"/assets/images/clients/avater.png"} alt="محل عکس شما" className={` w-[150px] h-[150px] rounded-full  flex justify-center items-center ${user.photoURL? "":"bg-gray-400 bg-opacity-40 border-white border-[1px]"}`} />
+                                        <img src={user.photoURL ? user.photoURL: window.location.origin +"/assets/images/clients/avater.png"} className={` w-[150px] h-[150px] rounded-full  flex justify-center items-center ${user.photoURL? "":"bg-gray-400 bg-opacity-40 border-white border-[1px]"}`} alt="profile" />
                                         {!user.photoURL && <div className="absolute bottom-0 right-1/2 rounded-full bg-gray-400 bg-opacity-40 flex justify-center items-center p-2 translate-x-1/2"><i className="fa-solid fa-plus text-white text-2xl"></i></div>}
                                         <label htmlFor="file-input" className="absolute text-xl top-0 left-0  cursor-pointer text-white w-full h-full bg-gray-700 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-100 ease-linear rounded-full bg-opacity-60">
                                             <i className="fa fa-upload text-white text-3xl"></i>
@@ -112,7 +120,7 @@ const Profile: FC = () => {
                                     </div>
                                 </div>
                                 <button onClick={(e) => handleExit(e)} className="relative z-10 h-12 whitespace-nowrap flex justify-center items-center bg-white rounded-lg ml-3 mt-3 px-1 text-sm bg-opacity-50 hover:bg-opacity-100 ease-linear transition-all duration-150"><i className="fa-solid fa-right-from-bracket px-2"></i>  خروج</button>
-                                <img className="absolute top-0 right-0 rounded-xl h-full w-full" src={window.location.origin + "/assets/images/bg-img/10.jpg"}></img>
+                                <img className="absolute top-0 right-0 rounded-xl h-full w-full" src={window.location.origin + "/assets/images/bg-img/10.jpg"} alt="بکگراند"></img>
                             </div>
                             <div className="p-10 flex  justify-center items-center">
                                 <div className="flex flex-col items-start w-full gap-y-4">

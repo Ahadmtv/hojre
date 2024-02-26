@@ -3,9 +3,9 @@ import { FC } from "react";
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { Link } from "react-router-dom";
-import { useGetCountListQuery } from "../../Redux/hojre";
 import GetFirestore from "../../hooks/GetFirestore";
 import { useAppSelector } from "../../Redux/hooks";
+import Loader from "../loader/Loader";
 
 interface countList {
     iconName: string
@@ -13,9 +13,12 @@ interface countList {
     text: string
     color: string
 }
+
 const AboutHome: FC = () => {
     const isLoading=useAppSelector((state)=>state.auth.isLoading);
     const {data}=GetFirestore("countList");
+
+    //استفاده از پکیج countUp.js
     const [inViewRef, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -23,7 +26,7 @@ const AboutHome: FC = () => {
 
     return (
         <div className="my-10">
-            {isLoading && <div>صبر کنید ...</div>}
+            {isLoading && <Loader/>}
             {data &&
                 <div className="relative w-full" ref={inViewRef}>
                     <div className="bg-black absolute lg:left-1/2 w-full lg:-skew-x-[25deg] z-0 h-full"></div>
@@ -49,7 +52,7 @@ const AboutHome: FC = () => {
                                 })}
                             </div>
                             <div className="md:order-last md:col-span-2 lg:order-none lg:col-span-1 flex justify-center items-center">
-                                <img src="./assets/images/instructor/01.png"></img>
+                                <img src="./assets/images/instructor/01.png" alt="image"></img>
                             </div>
                             <div className="flex justify-center items-center">
                                 <div className="text-white lg:text-black grid grid-col-1 gap-2">

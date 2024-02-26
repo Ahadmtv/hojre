@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore'
-import React, { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { db } from '../firebase/Config'
 
 const GetUserData = ( uid:string ):any => {
@@ -7,6 +7,7 @@ const GetUserData = ( uid:string ):any => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [hasError, setHasError] = useState<boolean>(false);
 
+    // هوک دریافت داده های کاربر با ورودی آیدی 
     useEffect(() => {
         async function fetchData() {
             setIsLoading(true);

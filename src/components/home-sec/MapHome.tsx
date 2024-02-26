@@ -1,4 +1,4 @@
-import { FC } from "react"
+ import { FC } from "react"
 import Tooltip from "../Tooltip"
 
 const MapHome: FC = () => {
@@ -11,11 +11,11 @@ const MapHome: FC = () => {
                 </div>
                 <div className="relative w-full h-0 pb-[37%] overflow-hidden flex justify-center">
                     <img className="absolute w-[90%] h-full" src="./assets/images/clients/bg.png" alt="World Map" />
-                    <div className="absolute top-[20%] left-[25%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/01.jpg"></img></Tooltip></div>
-                    <div className="absolute top-[36%] left-[81%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/02.jpg"></img></Tooltip></div>
-                    <div className="absolute top-[68%] left-[32%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/03.jpg"></img></Tooltip></div>
-                    <div className="absolute top-[27%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/avater.jpg"></img></Tooltip></div>
-                    <div className="absolute top-[60%] left-[59%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/avater.jpg"></img></Tooltip></div>
+                    <div className="absolute top-[20%] left-[25%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/01.jpg" alt=""></img></Tooltip></div>
+                    <div className="absolute top-[36%] left-[81%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/02.jpg" alt=""></img></Tooltip></div>
+                    <div className="absolute top-[68%] left-[32%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/03.jpg" alt=""></img></Tooltip></div>
+                    <div className="absolute top-[27%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/avater.jpg" alt=""></img></Tooltip></div>
+                    <div className="absolute top-[60%] left-[59%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-amber-300 rounded-full animate-pulse border-2 border-amber-700 hover:animate-none"><Tooltip content="من اینجام"><img className="w-full h-full rounded-full" src="./assets/images/clients/avater.jpg" alt=""></img></Tooltip></div>
                 </div>
             </div>
         </div>

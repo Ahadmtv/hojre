@@ -1,24 +1,21 @@
 import { FC, useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
+import { Navigate, useLocation } from "react-router-dom"
 import Loader from "../../components/loader/Loader"
 import { onAuthStateChanged } from "firebase/auth"
-import { Auth, db } from "../../firebase/Config"
-import { doc, getDoc } from "firebase/firestore"
-import { setUser } from "../../Redux/authSlice"
+import { Auth } from "../../firebase/Config"
+
 interface Iprops {
     children: any
 }
+
+// تابع تایید آنلاین بودن کاربر برای استفاده از از برخی آدرس ها
 const Privet: FC<Iprops> = ({ children }) => {
-    const dispatch=useAppDispatch();
     const location = useLocation();
-    const navigate = useNavigate();
     const [result, setResult] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(() => {
-        // Subscribe to the user's auth state
+        // بررسی کاربران آنلاین
         const unsubscribe = onAuthStateChanged(
             Auth,
             (currentUser:any) => {
@@ -30,21 +27,17 @@ const Privet: FC<Iprops> = ({ children }) => {
                 setLoading(false);
             }
         );
-        // Unsubscribe on unmount
+       // آنسابسکرایب کردن 
         return () => unsubscribe();
     }, []);
 
-      // If loading, show a spinner or something
+ 
   if (loading) return <Loader/>;
 
-  // If error, show an error message or something
   if (error) return <div>Error: {error}</div>;
 
-  // If user is authenticated, render the children component
   if (result) return children;
-  
 
-  // If user is not authenticated, redirect to sign-in page
     return (
         <Navigate to="/signin" state={{ from: location }} replace></Navigate>
     )

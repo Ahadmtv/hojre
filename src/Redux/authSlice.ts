@@ -4,7 +4,7 @@ import { app, db } from "../firebase/Config"
 import { doc, getDoc } from "firebase/firestore";
 const auth: Auth = getAuth(app);
 
-
+// تابع دربافت اطلاعات کاربر از دیتابیس و ذخیره محصولات سبد خرید در متغیر لوکال
 export const cartinfo = createAsyncThunk(
   'auth/cartinfo',
   async (payload: { uid: string }) => {
@@ -16,6 +16,7 @@ export const cartinfo = createAsyncThunk(
   }
 )
 
+// تابع قبت نام کاربر جدید
 export const signUp = createAsyncThunk(
   "auth/signUp",
   async (payload: { email: string; password: string }) => {
@@ -28,6 +29,8 @@ export const signUp = createAsyncThunk(
     return userCredential.user;
   }
 );
+
+//تابع ورود کاربر به سایت
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async (payload: { email: string; password: string }) => {
@@ -44,6 +47,8 @@ export const signIn = createAsyncThunk(
     return userdata;
   }
 );
+
+// تابع فراموشی رمز عبور کاربر
 export const resetPass = createAsyncThunk(
   "auth/resetPass",
   async (payload: { email: string }) => {
@@ -52,12 +57,14 @@ export const resetPass = createAsyncThunk(
   }
 );
 
+// تعریفف متغیر ها
 const initialState = {
   user: {},
   isLoading: false,
   productCart:[]
 };
 
+// تعریف اسلایس احراز هویت کاربر
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -70,6 +77,8 @@ export const authSlice = createSlice({
     }
 
   },
+
+  // مخصوص استفاده از createAsyncThank
   extraReducers: (builder) => {
     builder
       .addCase(signUp.pending, (state) => {

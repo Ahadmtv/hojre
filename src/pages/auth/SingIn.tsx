@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { cartinfo, signIn } from '../../Redux/authSlice';
+import {  signIn } from '../../Redux/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hooks';
 import { toast } from 'react-toastify';
@@ -37,8 +37,8 @@ const SingIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const user = useAppSelector((state)=>state.auth.user);
-  
+
+  //تابع ورود کاربر 
   const goIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -92,17 +92,3 @@ const SingIn = () => {
 
 export default SingIn
 
-
-{/* <div className="register flex justify-center items-center">
-<div className="register-container">
-  <div className="main">
-    <form onSubmit={(e) => goIn(e)}>
-        <h2>ثبت نام</h2>
-        <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="نام کاربری" /><br />
-        <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="گذرواژه" /><br />
-        <input type="password" placeholder="تکرار گذرواژه" /><br />
-        <button type="submit">ورود</button><br />
-    </form>
-  </div>
-</div>
-</div> */}

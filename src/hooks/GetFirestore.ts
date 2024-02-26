@@ -24,16 +24,16 @@ const GetFirestore = (type: string, id?: string) => {
                         setData(result);
                     }
                 } else {
-                    console.log('No such document!');
+                    console.log('همچین سندی موجود نمی باشد');
                 }
             })
             .catch((error) => {
-                console.error('Error getting document:', error);
+                console.error('خطا:', error);
             })
             .finally(() => {
                 dispath(setLoading(false));
             })
-    }, [type,id]);
+    }, [type,id,dispath]);
     if (id) {
 
     }

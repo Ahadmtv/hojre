@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, ReactNode, FC } from 'react';
-import tippy, { Instance, Props } from 'tippy.js';
+import { useEffect, useRef, ReactNode } from 'react';
+import tippy, { Instance } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 
 type TooltipProps = {
@@ -7,6 +7,7 @@ type TooltipProps = {
   children: ReactNode;
 };
 
+// استفاده از پکیج tippy.js
 const Tooltip = ({ content, children }: TooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   let tooltipInstance: Instance | null = null;

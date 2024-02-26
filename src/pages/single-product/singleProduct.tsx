@@ -7,8 +7,6 @@ import ReviewDescProduct from "./ReviewDescProduct"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 
-
-
 const SingleProduct: FC = () => {
     return (
         <div>

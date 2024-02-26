@@ -14,8 +14,8 @@ const AplicationHome: FC = () => {
                         <p className="font-vazir-thin text-lg text-center"> از طریق لینک های زیر اپلیکیشن مارا دانلود کنید و از خرید خود لذت ببرید همچنین در قرعه کشی بزرگ آخر سال شرکت کنید و شانس خود را امتحان کتید</p>
                     </div>
                     <div className="flex gap-10">
-                        <Link to="/"><img src="./assets/images/app/01.jpg"></img></Link>
-                        <Link to="/"><img src="./assets/images/app/02.jpg"></img></Link>
+                        <Link to="/"><img src="./assets/images/app/01.jpg" alt="app"></img></Link>
+                        <Link to="/"><img src="./assets/images/app/02.jpg" alt="app"></img></Link>
                     </div>
                 </div>
             </div>

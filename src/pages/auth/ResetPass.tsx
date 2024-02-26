@@ -4,36 +4,11 @@ import { resetPass } from "../../Redux/authSlice";
 import { useAppDispatch } from "../../Redux/hooks";
 
 const ResetPass = () => {
-    const socialList = [
-        {
-            iconName: 'fa-brands fa-facebook-f',
-            siteLink: '#',
-            className: 'facebook',
-        },
-        {
-            iconName: 'fa-brands fa-twitter',
-            siteLink: '#',
-            className: 'twitter',
-        },
-        {
-            iconName: 'fa-brands fa-linkedin-in',
-            siteLink: '#',
-            className: 'linkedin',
-        },
-        {
-            iconName: 'fa-brands fa-instagram',
-            siteLink: '#',
-            className: 'instagram',
-        },
-        {
-            iconName: 'fa-brands fa-pinterest-p',
-            siteLink: '#',
-            className: 'pinterest',
-        },
-    ]
     const dispatch = useAppDispatch();
     const [email, setEmail] = useState("");
     const navigate=useNavigate();
+
+    //تابع ریست رمز عبور کاربر
     const reset = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {

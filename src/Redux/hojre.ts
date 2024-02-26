@@ -1,3 +1,10 @@
+
+
+// استفاده از RTK query  زمانی که داده ها در حال لوکال هستند
+
+
+
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const hojreApi = createApi({
     reducerPath: 'hojreApi',

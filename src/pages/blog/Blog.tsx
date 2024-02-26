@@ -5,6 +5,8 @@ import Footer from "../../components/Footer"
 import GetFirestore from "../../hooks/GetFirestore"
 
 const Blog = () => {
+
+  //هوک دریافت اطلاعات از دیتابیس
   const { data } = GetFirestore("blogs");
   return (
     <div>

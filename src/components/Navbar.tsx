@@ -2,7 +2,6 @@ import { FC, MouseEvent, useEffect, useState } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import persian from "persianjs"
-import GetUserData from "../hooks/GetUserData";
 import { signOut } from "firebase/auth";
 import { Auth } from "../firebase/Config";
 import { toast } from "react-toastify";
@@ -13,8 +12,6 @@ import Loader from "./loader/Loader";
 const Navbar: FC = () => {
     const user: any = useAppSelector((state) => state.auth.user);
     const productCart = useAppSelector((state) => state.auth.productCart);
-    console.log(productCart)
-    // const cartNum = Object.keys(productCart).length;
     const [cartNum, setCartNum] = useState<number>(0);
     const [profileSlide, setProfileSlide] = useState<boolean>(false);
     const [menuToggle, setMenuToggle] = useState<boolean>(false);
@@ -22,28 +19,27 @@ const Navbar: FC = () => {
     const isLoading = useAppSelector((state) => state.auth.isLoading);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    let uid: string = "";
-    if (Object.keys(user).length !== 0) {
-        uid = user.uid
-    }
+
+
+    //دریافت لحظه ای مقدار سبد خرید کاربر
+
     useEffect(() => {
             if (Object.keys(productCart)) {
                 setCartNum(Object.keys(productCart).length);
-                console.log(true);
             } else {
                 setCartNum(0);
-                console.log(false);
             }
     }, [productCart]);
 
-
-    // const {userData, isLoading, hasError}=GetUserData(uid);
+    // نمایش منو ها در حالت نمایش موبایل 
     const showMenu = () => {
         setMenuToggle(!menuToggle);
     }
     const showAuth = () => {
         setAuthToggle(!authToggle);
     }
+
+    //انجام تابع خروج کاربر
     const handleExit = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         navigate("/");
@@ -81,7 +77,7 @@ const Navbar: FC = () => {
                                 <div className=" justify-center align-middle flex mx-4">
                                     <div className="flex justify-center items-center relative">
                                         <div className="cursor-pointer" onClick={() => setProfileSlide(!profileSlide)}>
-                                            <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`}></img></div>
+                                            <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`} alt="پروفایل"></img></div>
                                             <div className="bg-red-600 p-2 rounded-full absolute left-0 text-sm w-1 h-1 flex justify-center items-center bottom-[6px] text-white">{cartNum === 0 ? "0" : persian(cartNum).englishNumber().toString()}</div>
                                         </div>
                                         <ul className={`${profileSlide ? "flex" : "hidden"} absolute bottom-[-120px] right-[10px] bg-white rounded-tl-lg flex-col w-[150px] border-2`}>
@@ -106,7 +102,7 @@ const Navbar: FC = () => {
                             <div className=" justify-center align-middle hidden md:flex mx-4">
                                 <div className="flex justify-center items-center relative">
                                     <div className="cursor-pointer" onClick={() => setProfileSlide(!profileSlide)}>
-                                        <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`}></img></div>
+                                        <div className="rounded-full border-[3px] border-amber-300"><img className="rounded-full w-14 h-14" src={`${user.photoURL ? user.photoURL : window.location.origin + "/assets/images/clients/avater.png"}`} alt="پروفایل"></img></div>
                                         <div className="bg-red-600 p-2 rounded-full absolute left-0 text-sm w-1 h-1 flex justify-center items-center bottom-[6px] text-white">{cartNum === 0 ? "0" : persian(cartNum).englishNumber().toString()}</div>
                                     </div>
                                     <ul className={`${profileSlide ? "flex" : "hidden"} absolute bottom-[-120px] right-[10px] bg-white rounded-tl-lg flex-col w-[150px] border-2`}>
@@ -128,7 +124,7 @@ const Navbar: FC = () => {
                             </ul>
                         </div>
                         <div className="mr-auto">
-                            <Link to="/"><img className="max-w-[200px]" src={`${window.location.origin}/assets/images/logo/logo.png`}></img></Link>
+                            <Link to="/"><img className="max-w-[200px]" src={`${window.location.origin}/assets/images/logo/logo.png`} alt="logo"></img></Link>
                         </div>
                     </div>
                     <div >

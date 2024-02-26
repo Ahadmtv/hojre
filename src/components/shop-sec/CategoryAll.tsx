@@ -20,6 +20,8 @@ const CategoryAll: FC = () => {
     const {data}=GetFirestore("products")
     const categoryList = ["همه", ...new Set(data?.map((d: any) => d.category))];
     const Dispatch = useDispatch();
+
+    //تابع تغییر محصولات درحال نمایش بر اساس دسته بندی
     const changeCate = (val: string) => {
         if (data) {
             if (val === "همه") {

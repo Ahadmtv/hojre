@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { useGetPopularPostsQuery } from "../../Redux/hojre"
 import GetFirestore from "../../hooks/GetFirestore"
 
 interface topPost{
@@ -11,6 +10,8 @@ interface topPost{
     date: string
 }
 const PopularPosts: FC = () => {
+
+    //هوک دریافت اطلاعات از دیتابیس
     const {data}=GetFirestore("topPosts");
     return (
         <div className="my-shadow md:w-1/2 lg:w-auto bg-white">

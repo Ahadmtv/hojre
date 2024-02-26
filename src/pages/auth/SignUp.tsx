@@ -1,9 +1,9 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { signUp } from "../../Redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { toast } from "react-toastify";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/Config";
 import Loader from "../../components/loader/Loader";
 
@@ -42,6 +42,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  //تابع ثبت نام کاربر جدید
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password === confirmPassword) {
@@ -68,12 +70,10 @@ const SignUp = () => {
           // ارسال مشخصات یوزر به دیتابیس 
 
           let userData = JSON.parse(JSON.stringify(result.payload.providerData[0]));
-          const docRef = await setDoc(doc(db, "users", result.payload.providerData[0].uid), {
+           await setDoc(doc(db, "users", result.payload.providerData[0].uid), {
             ...userData,
             displayName: fullname
           });
-
-          /////////////////////////////////
         }
       } catch (error) {
         toast.error("خطایی رخ داده است");

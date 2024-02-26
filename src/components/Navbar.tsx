@@ -53,11 +53,12 @@ const Navbar: FC = () => {
             .catch(() => {
                 toast.error("خطایی رخ داده است");
                 dispatch(setLoading(false));
+            }).finally(()=>{
+                dispatch(setLoading(false));
             })
     }
     return (
         <>
-            {isLoading && <Loader />}
             <header className=" w-full fixed backdrop-blur-2xl z-30 bg-white bg-opacity-40">
                 <div className="container mx-auto bg-transparent">
                     {Object.keys(user).length === 0 &&

@@ -16,7 +16,6 @@ const CatHome:FC = () => {
     const {data}=GetFirestore("catHome");
     return (
         <div>
-            {isLoading && <Loader/>}
             <div className="container text-center mx-auto">
                 <div className="header-sec">
                     <h2 className="text-3xl my-5 text-amber-400 font-vazir-bold">از ما خرید کنید </h2>

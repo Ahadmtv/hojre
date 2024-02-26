@@ -26,7 +26,6 @@ const AboutHome: FC = () => {
 
     return (
         <div className="my-10">
-            {isLoading && <Loader/>}
             {data &&
                 <div className="relative w-full" ref={inViewRef}>
                     <div className="bg-black absolute lg:left-1/2 w-full lg:-skew-x-[25deg] z-0 h-full"></div>

@@ -8,22 +8,24 @@ import { setFilterdPro } from "../../Redux/ProductsSlice"
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import Loader from "../loader/Loader"
 import GetFirestore from "../../hooks/GetFirestore"
+import { Card } from "antd"
+import Meta from "antd/es/card/Meta"
 
 const ProductCards: FC = () => {
     const { filterdPro, currentPage, productPerPage } = useSelector((state: any) => state.products);
-    const isLoading=useAppSelector((state)=>state.auth.isLoading);
+    const isLoading = useAppSelector((state) => state.auth.isLoading);
     const lastIndex = productPerPage * currentPage;
     const firstIndex = lastIndex - productPerPage;
     const Dispatch = useAppDispatch();
-    
-// استفاده از هوک دریافت اطلاعات فایر استور 
+
+    // استفاده از هوک دریافت اطلاعات فایر استور 
 
     const { data } = GetFirestore("products");
     useEffect(() => {
         if (data) {
             Dispatch(setFilterdPro(data));
         }
-    }, [data,Dispatch]);
+    }, [data, Dispatch]);
 
     const [styleGrid, setStyleGrid] = useState<boolean>(true);
     const ahad = filterdPro.slice(firstIndex, lastIndex);
@@ -50,23 +52,29 @@ const ProductCards: FC = () => {
             <div className={styleGrid ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" : "grid grid-cols-1 gap-5"}>
                 {ahad && ahad.map((pro: any) => {
                     return (
-                        <div className="my-shadow p-2" key={pro.id}>
-                            <div className={styleGrid ? "" : "flex"}>
-                                <div onMouseOver={(e) => hover(e)} onMouseOut={(e) => unhover(e)} className={`relative overflow-hidden ${styleGrid ? "" : "max-w-[250px]"}`}>
-                                    <img src={pro.img} alt={pro.id}></img>
-                                    <div className="product-slide ">
-                                        <Tooltip content="مشاهده"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to={`/shop/${pro.id}`}><i className="text-white fa-solid fa-eye"></i></Link></Tooltip>
-                                        <Tooltip content="پسندیدن"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to="/"><i className="text-white fa-solid fa-heart"></i></Link></Tooltip>
-                                        <Tooltip content="خرید"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to="/cart"><i className="text-white fa-solid fa-cart-shopping"></i></Link></Tooltip>
+                        <Card  hoverable style={{fontFamily:"vazir"}} loading={isLoading?true:false}>
+                            <Meta
+                                description={
+                                    <div className="my-shadow p-2" key={pro.id}>
+                                        <div className={styleGrid ? "" : "flex"}>
+                                            <div onMouseOver={(e) => hover(e)} onMouseOut={(e) => unhover(e)} className={`relative overflow-hidden ${styleGrid ? "" : "max-w-[250px]"}`}>
+                                                <img src={pro.img} alt={pro.id}></img>
+                                                <div className="product-slide ">
+                                                    <Tooltip content="مشاهده"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to={`/shop/${pro.id}`}><i className="text-white fa-solid fa-eye"></i></Link></Tooltip>
+                                                    <Tooltip content="پسندیدن"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to="/"><i className="text-white fa-solid fa-heart"></i></Link></Tooltip>
+                                                    <Tooltip content="خرید"><Link className="p-4 bg-amber-300 hover:bg-amber-400 duration-150 ease-linear flex justify-center items-center rounded-full mx-2" to="/cart"><i className="text-white fa-solid fa-cart-shopping"></i></Link></Tooltip>
+                                                </div>
+                                            </div>
+                                            <div className={`flex justify-center flex-col ${styleGrid ? "items-center gap-2 mt-2" : "gap-4 mr-10"}`}>
+                                                <div className="text-center"><Link className="text-lg" to={`/shop/${pro.id}`}>{pro.name}</Link></div>
+                                                <div className="text-amber-300"><Ratting /></div>
+                                                <div className="text-md">{persian(pro.price).englishNumber().toString() + ",۰۰۰"}تومان</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={`flex justify-center flex-col ${styleGrid ? "items-center gap-2 mt-2" : "gap-4 mr-10"}`}>
-                                    <div className="text-center"><Link to={`/shop/${pro.id}`}>{pro.name}</Link></div>
-                                    <div className="text-amber-300"><Ratting /></div>
-                                    <div>{persian(pro.price).englishNumber().toString()+",۰۰۰"}تومان</div>
-                                </div>
-                            </div>
-                        </div>
+                                }
+                            />
+                        </Card>
                     )
                 })}
             </div>

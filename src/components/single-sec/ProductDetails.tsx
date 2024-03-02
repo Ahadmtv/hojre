@@ -11,15 +11,15 @@ import Loader from "../loader/Loader"
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks"
 import { cartinfo, setLoading } from "../../Redux/authSlice"
 import GetFirestore from "../../hooks/GetFirestore"
-
+import { Button, Select, Space } from 'antd';
 const ProductDetails: FC = () => {
     const { id } = useParams<(string)>();
     const isLoading = useAppSelector((state) => state.auth.isLoading);
     const dispatch = useAppDispatch();
-    const {data} = GetFirestore("products",id);
+    const { data } = GetFirestore("products", id);
     const navigate = useNavigate();
-    const [color, setColor] = useState<string>("");
-    const [size, setSize] = useState<string>("");
+    const [color, setColor] = useState<string>("انتخاب رنگ");
+    const [size, setSize] = useState<string>("انتخاب سایز");
     const [copon, setCopon] = useState<string>("");
     const [quantity, setQuantity] = useState<number>(1);
 
@@ -45,10 +45,6 @@ const ProductDetails: FC = () => {
 
         }
     });
-
-
-
-
     // تابع اضافه به سبد خرید 
 
     const handleAdd = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -117,10 +113,10 @@ const ProductDetails: FC = () => {
                         <div className="flex flex-col gap-4 pr-4 h-full mt-4 md:mt-0">
                             <div>
                                 <h3 className="text-2xl font-bold">{data.name}</h3>
-                                <Ratting /><span className="font-vazir-thin">{data.ratingsCount} نظر</span>
+                                <Ratting /><span className="font-vazir-thin mr-4">{persian(data.ratingsCount).englishNumber().toString()} نظر</span>
                             </div>
                             <div className="flex flex-col gap-y-3">
-                                <p className="text-2xl">{persian(data.price).englishNumber().toString()+",۰۰۰"}تومان</p>
+                                <p className="text-2xl">{persian(data.price).englishNumber().toString() + ",۰۰۰"}تومان</p>
                                 <p className="">{data.seller}</p>
                                 <p className="font-vazir-thin">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
                             </div>
@@ -130,23 +126,36 @@ const ProductDetails: FC = () => {
                             <form className="flex flex-col gap-y-6 mt-auto">
                                 <div className="flex items-center gap-x-4">
                                     {/* سایز محصول */}
-                                    <select value={size} onChange={(e) => setSize(e.target.value)} className="py-2 px-5" >
-                                        <option>انتخاب سایز</option>
-                                        <option>sm</option>
-                                        <option>md</option>
-                                        <option>L</option>
-                                        <option>XL</option>
-                                        <option>2XL</option>
-                                    </select>
-                                    {/* رنگ محصول */}
-                                    <select value={color} onChange={(e) => setColor(e.target.value)} className="py-2 px-5" >
-                                        <option>انتخاب رنگ</option>
-                                        <option>قرمز</option>
-                                        <option>بنفش</option>
-                                        <option>آبی</option>
-                                        <option>زرد</option>
-                                        <option>یاسی</option>
-                                    </select>
+                                    <Select
+                                        style={{ width: 120, height: 40 }}
+                                        popupClassName="bg-gray-200"
+                                        className="font-vazir"
+                                        value={size}
+                                        placeholder="انتخاب سایز"
+                                        onChange={(value) => setSize(value)}
+                                        options={[
+                                            { value: 'sm', label: 'sm' },
+                                            { value: 'md', label: 'md' },
+                                            { value: 'L', label: 'L' },
+                                            { value: 'XL', label: 'XL' },
+                                            { value: '2XL', label: '2XL' },
+                                        ]}
+                                    />
+                                    <Select
+                                        style={{ width: 120, height: 40 }}
+                                        popupClassName="bg-gray-200 font-vazir"
+                                        className="font-vazir"
+                                        value={color}
+                                        placeholder="انتخاب رنگ"
+                                        onChange={(value) => setColor(value)}
+                                        options={[
+                                            { value: 'قرمز', label: 'قرمز' },
+                                            { value: 'بنفش', label: 'بنفش' },
+                                            { value: 'آبی', label: 'آبی' },
+                                            { value: 'زرد', label: 'زرد' },
+                                            { value: 'یاسی', label: 'یاسی' },
+                                        ]}
+                                    />
                                 </div>
                                 {/* تعداد و کد تخفیف */}
                                 <div className="flex gap-x-4">
